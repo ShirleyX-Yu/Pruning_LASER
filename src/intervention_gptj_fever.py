@@ -252,7 +252,9 @@ if __name__ == '__main__':
     home_dir = args.home_dir
     dataset_loc = args.dataset_file
 
-    save_dir = f"{home_dir}/{llm_name}/{args.intervention}/{args.lname}"
+    # create a new path from current directory that calls python
+    save_dir = f"./{home_dir}/{llm_name}/{args.intervention}/{args.lname}"
+    print(f"save dir: {save_dir}")
     if not os.path.exists(save_dir):
         os.makedirs(save_dir)
 
