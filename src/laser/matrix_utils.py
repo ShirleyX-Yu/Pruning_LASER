@@ -37,11 +37,12 @@ def viz_rank_change(rank_list,name):
 
 # Helper functions for rank reduction
 # replace do_low_rank with VENDI score
+# k referes to bottom k% of the singular vectors (pg 8 of paper)
 def do_low_rank(weight, k, debug=False, niter=2):
     assert weight.ndim == 2
 
     max_rank = min(weight.shape[0], weight.shape[1])
-    desired_rank = int(max_rank * k)
+    desired_rank = int(max_rank * k) 
 
     if debug:
         print(f"Shape is {weight.shape} and shape is {weight.dtype} => desired rank {desired_rank}")

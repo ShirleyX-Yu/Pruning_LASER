@@ -121,6 +121,8 @@ class GPTJLaser(AbstractLaser):
             elif intervention == 'rank-reduction':
                 # Do rank reduction
                 mat_analysis_tensor = deepcopy(param)
+                # replace with VENDI score
+                # referencing the call in matrix_utils.py (similarily in laser_compose.py)
                 mat_analysis = do_low_rank(mat_analysis_tensor.type(torch.float32), (10 - rate) * 0.1)
 
             elif intervention == 'zero':

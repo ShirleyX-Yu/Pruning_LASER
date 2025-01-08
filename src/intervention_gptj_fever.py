@@ -34,6 +34,7 @@ class GPTJExperiment:
         # Device for the experiment
         self.device = "cuda" if torch.cuda.is_available() else "cpu"
 
+    # same function name across models and datasets 
     def intervene(self, model, tokenizer, dataset, args, llm_name):
 
         dataset_size = len(dataset)
@@ -41,6 +42,8 @@ class GPTJExperiment:
                         f"Dataset size {dataset_size}. Batch size {args.batch_size}")
 
         time_edit_start = time.time()
+        # every model has one of these calls (independent of dataset)
+        # this LaserWrapper accesses functions in gptj_laser.py
         model_edit = LaserWrapper.get_edited_model(model=model,
                                                    lname=args.lname,
                                                    lnum=args.lnum,
@@ -207,10 +210,11 @@ class GPTJExperiment:
         # Print final numbers and return
         self.logger.log(f"Time taken to store all results {elapsed_from_str(time_start)}")
 
-
+# start running from main
 if __name__ == '__main__':
 
     # Step 1: Command line argument
+    # when calling the .py we can pass in our own specifications for these arugments
     parser = argparse.ArgumentParser(description='Process Arguments for experiments with GPTJ LLM on CounterFact')
 
     parser.add_argument('--rate', type=float, default=1, help='rates for intervention')
@@ -277,6 +281,7 @@ if __name__ == '__main__':
     dataset = dataset_util.get_dataset(logger)
 
     # Step 6: Run intervention
+    # the pruning step (defaulted argument in gptj_laser for get_edited_model for "rank-reduction")
     experiment.intervene(model=model,
                          tokenizer=tokenizer,
                          dataset=dataset,
