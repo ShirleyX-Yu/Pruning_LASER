@@ -244,8 +244,9 @@ if __name__ == '__main__':
     tokenizer = AutoTokenizer.from_pretrained(llm_path)
     model = GPTJForCausalLM.from_pretrained(
         llm_path,
-        revision="float16",
-        torch_dtype=torch.float16
+        # changed from "float16" and torch.float16 to 32 for running on CPU
+        revision="float32",
+        torch_dtype=torch.float32
     )
 
     # Step 3: Create save directory and logger
