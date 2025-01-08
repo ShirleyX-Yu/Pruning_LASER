@@ -47,7 +47,7 @@ with open(dataset_loc) as f:
     d = json.load(f)
 
 # Helper Funcs
-
+# replace do_low_rank with VENDI score
 def do_low_rank(weight, k, debug=False):
     assert weight.ndim == 2
 

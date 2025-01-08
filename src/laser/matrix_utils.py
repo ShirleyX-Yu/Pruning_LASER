@@ -36,6 +36,7 @@ def viz_rank_change(rank_list,name):
 
 
 # Helper functions for rank reduction
+# replace do_low_rank with VENDI score
 def do_low_rank(weight, k, debug=False, niter=2):
     assert weight.ndim == 2
 
