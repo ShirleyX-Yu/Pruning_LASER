@@ -1,0 +1,513 @@
+Main, INFO: ==================================================
+Main, INFO: Created a new Experiment. Model GPTJ
+Main, INFO: ==================================================
+Main, INFO: >>>> Command line argument rate => 9.9
+Main, INFO: >>>> Command line argument dtpts => 22000
+Main, INFO: >>>> Command line argument batch_size => 256
+Main, INFO: >>>> Command line argument max_len => 1
+Main, INFO: >>>> Command line argument k => 10
+Main, INFO: >>>> Command line argument intervention => rank-reduction
+Main, INFO: >>>> Command line argument lname => fc_in
+Main, INFO: >>>> Command line argument lnum => 26
+Main, INFO: >>>> Command line argument model_path => /mnt/data/Llama2/Llama-2-7b-hf
+Main, INFO: >>>> Command line argument home_dir => /mnt/data/iclr2024/fever/gptj_results
+Main, INFO: >>>> Command line argument dataset_file => /mnt/data/counterfact
+Main, INFO: ==================================================
+urllib3.connectionpool, DEBUG: https://huggingface.co:443 "GET /api/datasets/EleutherAI/fever HTTP/1.1" 200 3055
+urllib3.connectionpool, DEBUG: Starting new HTTPS connection (1): s3.amazonaws.com:443
+urllib3.connectionpool, DEBUG: https://s3.amazonaws.com:443 "HEAD /datasets.huggingface.co/datasets/datasets/EleutherAI/fever/EleutherAI/fever.py HTTP/1.1" 404 0
+urllib3.connectionpool, DEBUG: Starting new HTTPS connection (1): huggingface.co:443
+urllib3.connectionpool, DEBUG: https://huggingface.co:443 "HEAD /datasets/EleutherAI/fever/resolve/main/fever.py HTTP/1.1" 200 0
+urllib3.connectionpool, DEBUG: Starting new HTTPS connection (1): huggingface.co:443
+urllib3.connectionpool, DEBUG: https://huggingface.co:443 "GET /datasets/EleutherAI/fever/resolve/main/fever.py HTTP/1.1" 200 10310
+urllib3.connectionpool, DEBUG: Starting new HTTPS connection (1): huggingface.co:443
+urllib3.connectionpool, DEBUG: https://huggingface.co:443 "HEAD /datasets/EleutherAI/fever/resolve/main/dataset_infos.json HTTP/1.1" 404 0
+urllib3.connectionpool, DEBUG: Starting new HTTPS connection (1): huggingface.co:443
+urllib3.connectionpool, DEBUG: https://huggingface.co:443 "HEAD /datasets/EleutherAI/fever/resolve/main/README.md HTTP/1.1" 200 0
+urllib3.connectionpool, DEBUG: Starting new HTTPS connection (1): huggingface.co:443
+urllib3.connectionpool, DEBUG: https://huggingface.co:443 "GET /datasets/EleutherAI/fever/resolve/main/README.md HTTP/1.1" 200 11279
+urllib3.connectionpool, DEBUG: Starting new HTTPS connection (1): storage.googleapis.com:443
+urllib3.connectionpool, DEBUG: https://storage.googleapis.com:443 "HEAD /huggingface-nlp/cache/datasets/EleutherAI___fever/v1.0/1.0.0/dataset_info.json HTTP/1.1" 404 0
+urllib3.connectionpool, DEBUG: Starting new HTTPS connection (1): fever.ai:443
+urllib3.connectionpool, DEBUG: https://fever.ai:443 "HEAD /download/fever/train.jsonl HTTP/1.1" 200 0
+urllib3.connectionpool, DEBUG: Starting new HTTPS connection (1): fever.ai:443
+urllib3.connectionpool, DEBUG: https://fever.ai:443 "GET /download/fever/train.jsonl HTTP/1.1" 200 33024303
+urllib3.connectionpool, DEBUG: Starting new HTTPS connection (1): fever.ai:443
+urllib3.connectionpool, DEBUG: https://fever.ai:443 "HEAD /download/fever/shared_task_dev.jsonl HTTP/1.1" 200 0
+urllib3.connectionpool, DEBUG: Starting new HTTPS connection (1): fever.ai:443
+urllib3.connectionpool, DEBUG: https://fever.ai:443 "GET /download/fever/shared_task_dev.jsonl HTTP/1.1" 200 4349935
+urllib3.connectionpool, DEBUG: Starting new HTTPS connection (1): fever.ai:443
+urllib3.connectionpool, DEBUG: https://fever.ai:443 "HEAD /download/fever/paper_dev.jsonl HTTP/1.1" 200 0
+urllib3.connectionpool, DEBUG: Starting new HTTPS connection (1): fever.ai:443
+urllib3.connectionpool, DEBUG: https://fever.ai:443 "GET /download/fever/paper_dev.jsonl HTTP/1.1" 200 2168767
+urllib3.connectionpool, DEBUG: Starting new HTTPS connection (1): fever.ai:443
+urllib3.connectionpool, DEBUG: https://fever.ai:443 "HEAD /download/fever/paper_test.jsonl HTTP/1.1" 200 0
+urllib3.connectionpool, DEBUG: Starting new HTTPS connection (1): fever.ai:443
+urllib3.connectionpool, DEBUG: https://fever.ai:443 "GET /download/fever/paper_test.jsonl HTTP/1.1" 200 2181168
+fsspec.local, DEBUG: open file: C:/Users/rober/.cache/huggingface/datasets/EleutherAI___fever/v1.0/1.0.0/aaf78d795e7eb335dcf2edfd8b2eae7b6030e171263fc0205db77ccedc5ffdf6.incomplete/fever-train-00000-00000-of-NNNNN.arrow
+fsspec.local, DEBUG: open file: C:/Users/rober/.cache/huggingface/datasets/EleutherAI___fever/v1.0/1.0.0/aaf78d795e7eb335dcf2edfd8b2eae7b6030e171263fc0205db77ccedc5ffdf6.incomplete/fever-dev-00000-00000-of-NNNNN.arrow
+fsspec.local, DEBUG: open file: C:/Users/rober/.cache/huggingface/datasets/EleutherAI___fever/v1.0/1.0.0/aaf78d795e7eb335dcf2edfd8b2eae7b6030e171263fc0205db77ccedc5ffdf6.incomplete/fever-paper_dev-00000-00000-of-NNNNN.arrow
+fsspec.local, DEBUG: open file: C:/Users/rober/.cache/huggingface/datasets/EleutherAI___fever/v1.0/1.0.0/aaf78d795e7eb335dcf2edfd8b2eae7b6030e171263fc0205db77ccedc5ffdf6.incomplete/fever-paper_test-00000-00000-of-NNNNN.arrow
+fsspec.local, DEBUG: open file: C:/Users/rober/.cache/huggingface/datasets/EleutherAI___fever/v1.0/1.0.0/aaf78d795e7eb335dcf2edfd8b2eae7b6030e171263fc0205db77ccedc5ffdf6.incomplete/dataset_info.json
+Main, INFO: Raw paper_dev set is 14475 and paper_test set is 14150.
+Main, INFO: Paper_dev and paper_test splits dont have a common context/claim.
+Main, INFO: After filtering paper_dev set is 6510 and paper_test set is 6576.
+Main, INFO: Read dataset of size 13086 of which the first 6510 examples are from the validation set and the remaining 6576 from the test split.
+Main, INFO: Starting a new intervention with rate 9.9. Dataset size 13086. Batch size 256
+Main, INFO: Editing a GPTJForCausalLM Model
+Main, INFO: Updating Layer: transformer.h.26.mlp.fc_in.weight
+Main, INFO: Total number of parameters updated is 1
+Main, INFO: Edited and put model on cpu in time 0 second
+Main, INFO: After 101 0-1 Correctness is 59.40594059405941 percentage, Mean F1 score is None, Mean Log Prob is -1.0861488905283485, top-1 accuracy is 59.40594059405941, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 101 examples. Total time taken is 3 hours. Avg time per example is 1 minutes.
+Main, INFO: Remaining 12985 examples. Expected Total time taken to complete is 16 days.
+Main, INFO: After 201 0-1 Correctness is 55.223880597014926 percentage, Mean F1 score is None, Mean Log Prob is -1.117365083439433, top-1 accuracy is 55.223880597014926, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 201 examples. Total time taken is 6 hours. Avg time per example is 1 minutes.
+Main, INFO: Remaining 12885 examples. Expected Total time taken to complete is 16 days.
+Main, INFO: After 301 0-1 Correctness is 54.48504983388705 percentage, Mean F1 score is None, Mean Log Prob is -1.1223166034467196, top-1 accuracy is 54.48504983388705, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 301 examples. Total time taken is 8 hours. Avg time per example is 1 minutes.
+Main, INFO: Remaining 12785 examples. Expected Total time taken to complete is 15 days.
+Main, INFO: After 401 0-1 Correctness is 51.87032418952619 percentage, Mean F1 score is None, Mean Log Prob is -1.1492935423541841, top-1 accuracy is 51.87032418952619, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 401 examples. Total time taken is 11 hours. Avg time per example is 1 minutes.
+Main, INFO: Remaining 12685 examples. Expected Total time taken to complete is 15 days.
+Main, INFO: After 501 0-1 Correctness is 51.29740518962076 percentage, Mean F1 score is None, Mean Log Prob is -1.153416907596969, top-1 accuracy is 51.29740518962076, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 501 examples. Total time taken is 14 hours. Avg time per example is 1 minutes.
+Main, INFO: Remaining 12585 examples. Expected Total time taken to complete is 15 days.
+Main, INFO: After 601 0-1 Correctness is 50.249584026622294 percentage, Mean F1 score is None, Mean Log Prob is -1.1632654486400713, top-1 accuracy is 50.249584026622294, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 601 examples. Total time taken is 17 hours. Avg time per example is 1 minutes.
+Main, INFO: Remaining 12485 examples. Expected Total time taken to complete is 15 days.
+Main, INFO: After 701 0-1 Correctness is 51.06990014265335 percentage, Mean F1 score is None, Mean Log Prob is -1.1600056569093304, top-1 accuracy is 51.06990014265335, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 701 examples. Total time taken is 20 hours. Avg time per example is 1 minutes.
+Main, INFO: Remaining 12385 examples. Expected Total time taken to complete is 15 days.
+Main, INFO: After 801 0-1 Correctness is 49.81273408239701 percentage, Mean F1 score is None, Mean Log Prob is -1.1701545709379009, top-1 accuracy is 49.81273408239701, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 801 examples. Total time taken is 23 hours. Avg time per example is 1 minutes.
+Main, INFO: Remaining 12285 examples. Expected Total time taken to complete is 15 days.
+Main, INFO: ==================================================
+Main, INFO: Created a new Experiment. Model GPTJ
+Main, INFO: ==================================================
+Main, INFO: >>>> Command line argument rate => 9.9
+Main, INFO: >>>> Command line argument dtpts => 22000
+Main, INFO: >>>> Command line argument batch_size => 256
+Main, INFO: >>>> Command line argument max_len => 1
+Main, INFO: >>>> Command line argument k => 10
+Main, INFO: >>>> Command line argument intervention => rank-reduction
+Main, INFO: >>>> Command line argument lname => fc_in
+Main, INFO: >>>> Command line argument lnum => 26
+Main, INFO: >>>> Command line argument model_path => /mnt/data/Llama2/Llama-2-7b-hf
+Main, INFO: >>>> Command line argument home_dir => /mnt/data/iclr2024/fever/gptj_results
+Main, INFO: >>>> Command line argument dataset_file => /mnt/data/counterfact
+Main, INFO: ==================================================
+urllib3.connectionpool, DEBUG: https://huggingface.co:443 "GET /api/datasets/EleutherAI/fever HTTP/1.1" 200 3055
+urllib3.connectionpool, DEBUG: Starting new HTTPS connection (1): s3.amazonaws.com:443
+urllib3.connectionpool, DEBUG: https://s3.amazonaws.com:443 "HEAD /datasets.huggingface.co/datasets/datasets/EleutherAI/fever/EleutherAI/fever.py HTTP/1.1" 404 0
+urllib3.connectionpool, DEBUG: Starting new HTTPS connection (1): huggingface.co:443
+urllib3.connectionpool, DEBUG: https://huggingface.co:443 "HEAD /datasets/EleutherAI/fever/resolve/main/fever.py HTTP/1.1" 200 0
+urllib3.connectionpool, DEBUG: Starting new HTTPS connection (1): huggingface.co:443
+urllib3.connectionpool, DEBUG: https://huggingface.co:443 "HEAD /datasets/EleutherAI/fever/resolve/main/dataset_infos.json HTTP/1.1" 404 0
+urllib3.connectionpool, DEBUG: Starting new HTTPS connection (1): huggingface.co:443
+urllib3.connectionpool, DEBUG: https://huggingface.co:443 "HEAD /datasets/EleutherAI/fever/resolve/main/README.md HTTP/1.1" 200 0
+fsspec.local, DEBUG: open file: C:/Users/rober/.cache/huggingface/datasets/EleutherAI___fever/v1.0/1.0.0/aaf78d795e7eb335dcf2edfd8b2eae7b6030e171263fc0205db77ccedc5ffdf6/dataset_info.json
+fsspec.local, DEBUG: open file: C:/Users/rober/.cache/huggingface/datasets/EleutherAI___fever/v1.0/1.0.0/aaf78d795e7eb335dcf2edfd8b2eae7b6030e171263fc0205db77ccedc5ffdf6/dataset_info.json
+Main, INFO: Raw paper_dev set is 14475 and paper_test set is 14150.
+Main, INFO: Paper_dev and paper_test splits dont have a common context/claim.
+Main, INFO: After filtering paper_dev set is 6510 and paper_test set is 6576.
+Main, INFO: Read dataset of size 13086 of which the first 6510 examples are from the validation set and the remaining 6576 from the test split.
+Main, INFO: Starting a new intervention with rate 9.9. Dataset size 13086. Batch size 256
+Main, INFO: Editing a GPTJForCausalLM Model
+Main, INFO: Updating Layer: transformer.h.26.mlp.fc_in.weight
+Main, INFO: Total number of parameters updated is 1
+Main, INFO: Edited and put model on cuda:0 in time 3 second
+Main, INFO: After 101 0-1 Correctness is 59.40594059405941 percentage, Mean F1 score is None, Mean Log Prob is -1.1107420812148858, top-1 accuracy is 59.40594059405941, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 101 examples. Total time taken is 38 second. Avg time per example is 0 second.
+Main, INFO: Remaining 12985 examples. Expected Total time taken to complete is 1 hours.
+Main, INFO: After 201 0-1 Correctness is 55.223880597014926 percentage, Mean F1 score is None, Mean Log Prob is -1.1418503930616142, top-1 accuracy is 55.223880597014926, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 201 examples. Total time taken is 52 second. Avg time per example is 0 second.
+Main, INFO: Remaining 12885 examples. Expected Total time taken to complete is 55 minutes.
+Main, INFO: After 301 0-1 Correctness is 54.48504983388705 percentage, Mean F1 score is None, Mean Log Prob is -1.1470462732338826, top-1 accuracy is 54.48504983388705, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 301 examples. Total time taken is 1 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 12785 examples. Expected Total time taken to complete is 46 minutes.
+Main, INFO: After 401 0-1 Correctness is 51.87032418952619 percentage, Mean F1 score is None, Mean Log Prob is -1.17460385767599, top-1 accuracy is 51.87032418952619, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 401 examples. Total time taken is 1 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 12685 examples. Expected Total time taken to complete is 42 minutes.
+Main, INFO: After 501 0-1 Correctness is 51.29740518962076 percentage, Mean F1 score is None, Mean Log Prob is -1.1788105101523523, top-1 accuracy is 51.29740518962076, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 501 examples. Total time taken is 1 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 12585 examples. Expected Total time taken to complete is 39 minutes.
+Main, INFO: After 601 0-1 Correctness is 50.249584026622294 percentage, Mean F1 score is None, Mean Log Prob is -1.1886337489732688, top-1 accuracy is 50.249584026622294, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 601 examples. Total time taken is 1 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 12485 examples. Expected Total time taken to complete is 36 minutes.
+Main, INFO: After 701 0-1 Correctness is 51.06990014265335 percentage, Mean F1 score is None, Mean Log Prob is -1.1852793388291873, top-1 accuracy is 51.06990014265335, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 701 examples. Total time taken is 1 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 12385 examples. Expected Total time taken to complete is 35 minutes.
+Main, INFO: After 801 0-1 Correctness is 49.81273408239701 percentage, Mean F1 score is None, Mean Log Prob is -1.1957549297258947, top-1 accuracy is 49.81273408239701, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 801 examples. Total time taken is 2 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 12285 examples. Expected Total time taken to complete is 33 minutes.
+Main, INFO: After 901 0-1 Correctness is 49.833518312985575 percentage, Mean F1 score is None, Mean Log Prob is -1.1968693596276803, top-1 accuracy is 49.833518312985575, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 901 examples. Total time taken is 2 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 12185 examples. Expected Total time taken to complete is 32 minutes.
+Main, INFO: After 1001 0-1 Correctness is 49.25074925074925 percentage, Mean F1 score is None, Mean Log Prob is -1.2031600770059523, top-1 accuracy is 49.25074925074925, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 1001 examples. Total time taken is 2 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 12085 examples. Expected Total time taken to complete is 32 minutes.
+Main, INFO: After 1101 0-1 Correctness is 48.59218891916439 percentage, Mean F1 score is None, Mean Log Prob is -1.2049078513122926, top-1 accuracy is 48.59218891916439, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 1101 examples. Total time taken is 2 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 11985 examples. Expected Total time taken to complete is 31 minutes.
+Main, INFO: After 1201 0-1 Correctness is 48.04329725228976 percentage, Mean F1 score is None, Mean Log Prob is -1.209470556166448, top-1 accuracy is 48.04329725228976, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 1201 examples. Total time taken is 3 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 11885 examples. Expected Total time taken to complete is 30 minutes.
+Main, INFO: After 1301 0-1 Correctness is 48.19369715603382 percentage, Mean F1 score is None, Mean Log Prob is -1.2098007270641091, top-1 accuracy is 48.19369715603382, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 1301 examples. Total time taken is 3 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 11785 examples. Expected Total time taken to complete is 30 minutes.
+Main, INFO: After 1401 0-1 Correctness is 48.82226980728051 percentage, Mean F1 score is None, Mean Log Prob is -1.2011539547210246, top-1 accuracy is 48.82226980728051, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 1401 examples. Total time taken is 3 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 11685 examples. Expected Total time taken to complete is 29 minutes.
+Main, INFO: After 1501 0-1 Correctness is 49.566955363091274 percentage, Mean F1 score is None, Mean Log Prob is -1.193757156305993, top-1 accuracy is 49.566955363091274, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 1501 examples. Total time taken is 3 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 11585 examples. Expected Total time taken to complete is 29 minutes.
+Main, INFO: After 1601 0-1 Correctness is 49.90630855715178 percentage, Mean F1 score is None, Mean Log Prob is -1.1920206731442433, top-1 accuracy is 49.90630855715178, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 1601 examples. Total time taken is 3 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 11485 examples. Expected Total time taken to complete is 28 minutes.
+Main, INFO: After 1701 0-1 Correctness is 49.794238683127574 percentage, Mean F1 score is None, Mean Log Prob is -1.1911413330389848, top-1 accuracy is 49.794238683127574, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 1701 examples. Total time taken is 4 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 11385 examples. Expected Total time taken to complete is 28 minutes.
+Main, INFO: After 1801 0-1 Correctness is 49.75013881177124 percentage, Mean F1 score is None, Mean Log Prob is -1.1924024599913026, top-1 accuracy is 49.75013881177124, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 1801 examples. Total time taken is 4 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 11285 examples. Expected Total time taken to complete is 27 minutes.
+Main, INFO: After 1901 0-1 Correctness is 50.184113624408205 percentage, Mean F1 score is None, Mean Log Prob is -1.1875474438392633, top-1 accuracy is 50.184113624408205, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 1901 examples. Total time taken is 4 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 11185 examples. Expected Total time taken to complete is 27 minutes.
+Main, INFO: After 2001 0-1 Correctness is 49.87506246876562 percentage, Mean F1 score is None, Mean Log Prob is -1.190279004977144, top-1 accuracy is 49.87506246876562, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 2001 examples. Total time taken is 4 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 11085 examples. Expected Total time taken to complete is 27 minutes.
+Main, INFO: After 2101 0-1 Correctness is 49.92860542598763 percentage, Mean F1 score is None, Mean Log Prob is -1.1878357328641194, top-1 accuracy is 49.976201808662545, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 2101 examples. Total time taken is 5 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 10985 examples. Expected Total time taken to complete is 26 minutes.
+Main, INFO: After 2201 0-1 Correctness is 49.88641526578828 percentage, Mean F1 score is None, Mean Log Prob is -1.1891910273316013, top-1 accuracy is 49.93184915947297, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 2201 examples. Total time taken is 5 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 10885 examples. Expected Total time taken to complete is 26 minutes.
+Main, INFO: After 2301 0-1 Correctness is 49.97827031725337 percentage, Mean F1 score is None, Mean Log Prob is -1.1897297082570053, top-1 accuracy is 50.02172968274663, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 2301 examples. Total time taken is 5 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 10785 examples. Expected Total time taken to complete is 25 minutes.
+Main, INFO: After 2401 0-1 Correctness is 50.02082465639317 percentage, Mean F1 score is None, Mean Log Prob is -1.1892593940289404, top-1 accuracy is 50.06247396917951, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 2401 examples. Total time taken is 5 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 10685 examples. Expected Total time taken to complete is 25 minutes.
+Main, INFO: After 2501 0-1 Correctness is 49.98000799680128 percentage, Mean F1 score is None, Mean Log Prob is -1.189835485197553, top-1 accuracy is 50.01999200319872, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 2501 examples. Total time taken is 5 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 10585 examples. Expected Total time taken to complete is 25 minutes.
+Main, INFO: After 2601 0-1 Correctness is 49.98077662437524 percentage, Mean F1 score is None, Mean Log Prob is -1.1897230380684172, top-1 accuracy is 50.01922337562476, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 2601 examples. Total time taken is 6 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 10485 examples. Expected Total time taken to complete is 25 minutes.
+Main, INFO: After 2701 0-1 Correctness is 50.277674935209184 percentage, Mean F1 score is None, Mean Log Prob is -1.1873395998625347, top-1 accuracy is 50.31469825990374, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 2701 examples. Total time taken is 6 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 10385 examples. Expected Total time taken to complete is 24 minutes.
+Main, INFO: After 2801 0-1 Correctness is 49.94644769725098 percentage, Mean F1 score is None, Mean Log Prob is -1.1899393299612477, top-1 accuracy is 49.982149232416994, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 2801 examples. Total time taken is 6 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 10285 examples. Expected Total time taken to complete is 24 minutes.
+Main, INFO: After 2901 0-1 Correctness is 49.84488107549121 percentage, Mean F1 score is None, Mean Log Prob is -1.1921347403312625, top-1 accuracy is 49.87935194760428, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 2901 examples. Total time taken is 6 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 10185 examples. Expected Total time taken to complete is 24 minutes.
+Main, INFO: After 3001 0-1 Correctness is 50.08330556481173 percentage, Mean F1 score is None, Mean Log Prob is -1.190225092272725, top-1 accuracy is 50.11662779073642, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 3001 examples. Total time taken is 7 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 10085 examples. Expected Total time taken to complete is 23 minutes.
+Main, INFO: After 3101 0-1 Correctness is 49.98387616897775 percentage, Mean F1 score is None, Mean Log Prob is -1.189888923937411, top-1 accuracy is 50.01612383102225, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 3101 examples. Total time taken is 7 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 9985 examples. Expected Total time taken to complete is 23 minutes.
+Main, INFO: After 3201 0-1 Correctness is 49.64073726960325 percentage, Mean F1 score is None, Mean Log Prob is -1.193245316382238, top-1 accuracy is 49.671977507029055, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 3201 examples. Total time taken is 7 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 9885 examples. Expected Total time taken to complete is 23 minutes.
+Main, INFO: After 3301 0-1 Correctness is 49.53044531960012 percentage, Mean F1 score is None, Mean Log Prob is -1.193778511413261, top-1 accuracy is 49.5607391699485, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 3301 examples. Total time taken is 7 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 9785 examples. Expected Total time taken to complete is 23 minutes.
+Main, INFO: After 3401 0-1 Correctness is 49.51484857394884 percentage, Mean F1 score is None, Mean Log Prob is -1.1935396569681602, top-1 accuracy is 49.54425169067921, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 3401 examples. Total time taken is 7 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 9685 examples. Expected Total time taken to complete is 22 minutes.
+Main, INFO: After 3501 0-1 Correctness is 49.642959154527276 percentage, Mean F1 score is None, Mean Log Prob is -1.1915753441635317, top-1 accuracy is 49.6715224221651, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 3501 examples. Total time taken is 8 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 9585 examples. Expected Total time taken to complete is 22 minutes.
+Main, INFO: After 3601 0-1 Correctness is 49.7917245209664 percentage, Mean F1 score is None, Mean Log Prob is -1.190421747014245, top-1 accuracy is 49.81949458483754, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 3601 examples. Total time taken is 8 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 9485 examples. Expected Total time taken to complete is 22 minutes.
+Main, INFO: After 3701 0-1 Correctness is 49.52715482302081 percentage, Mean F1 score is None, Mean Log Prob is -1.1928278219857689, top-1 accuracy is 49.55417454741961, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 3701 examples. Total time taken is 8 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 9385 examples. Expected Total time taken to complete is 21 minutes.
+Main, INFO: After 3801 0-1 Correctness is 49.53959484346225 percentage, Mean F1 score is None, Mean Log Prob is -1.1933409596580922, top-1 accuracy is 49.56590370955012, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 3801 examples. Total time taken is 8 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 9285 examples. Expected Total time taken to complete is 21 minutes.
+Main, INFO: After 3901 0-1 Correctness is 49.448859266854654 percentage, Mean F1 score is None, Mean Log Prob is -1.1946045112316501, top-1 accuracy is 49.474493719559085, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 3901 examples. Total time taken is 9 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 9185 examples. Expected Total time taken to complete is 21 minutes.
+Main, INFO: After 4001 0-1 Correctness is 49.63759060234941 percentage, Mean F1 score is None, Mean Log Prob is -1.1922245234124393, top-1 accuracy is 49.66258435391152, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 4001 examples. Total time taken is 9 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 9085 examples. Expected Total time taken to complete is 21 minutes.
+Main, INFO: After 4101 0-1 Correctness is 49.622043404047794 percentage, Mean F1 score is None, Mean Log Prob is -1.1917247538725302, top-1 accuracy is 49.64642770056084, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 4101 examples. Total time taken is 9 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 8985 examples. Expected Total time taken to complete is 20 minutes.
+Main, INFO: After 4201 0-1 Correctness is 49.77386336586527 percentage, Mean F1 score is None, Mean Log Prob is -1.1896312677684326, top-1 accuracy is 49.79766722208998, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 4201 examples. Total time taken is 9 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 8885 examples. Expected Total time taken to complete is 20 minutes.
+Main, INFO: After 4301 0-1 Correctness is 50.01162520344106 percentage, Mean F1 score is None, Mean Log Prob is -1.187073552963263, top-1 accuracy is 50.03487561032318, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 4301 examples. Total time taken is 10 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 8785 examples. Expected Total time taken to complete is 20 minutes.
+Main, INFO: After 4401 0-1 Correctness is 50.102249488752555 percentage, Mean F1 score is None, Mean Log Prob is -1.1858592988062762, top-1 accuracy is 50.12497159736424, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 4401 examples. Total time taken is 10 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 8685 examples. Expected Total time taken to complete is 20 minutes.
+Main, INFO: After 4501 0-1 Correctness is 50.01110864252389 percentage, Mean F1 score is None, Mean Log Prob is -1.1860851710490508, top-1 accuracy is 50.03332592757165, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 4501 examples. Total time taken is 10 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 8585 examples. Expected Total time taken to complete is 19 minutes.
+Main, INFO: After 4601 0-1 Correctness is 50.09780482503803 percentage, Mean F1 score is None, Mean Log Prob is -1.18550689010303, top-1 accuracy is 50.119539230602044, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 4601 examples. Total time taken is 10 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 8485 examples. Expected Total time taken to complete is 19 minutes.
+Main, INFO: After 4701 0-1 Correctness is 50.074452244203364 percentage, Mean F1 score is None, Mean Log Prob is -1.185474605756576, top-1 accuracy is 50.09572431397575, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 4701 examples. Total time taken is 10 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 8385 examples. Expected Total time taken to complete is 19 minutes.
+Main, INFO: After 4801 0-1 Correctness is 50.114559466777756 percentage, Mean F1 score is None, Mean Log Prob is -1.1852008049387754, top-1 accuracy is 50.135388460737346, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 4801 examples. Total time taken is 11 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 8285 examples. Expected Total time taken to complete is 19 minutes.
+Main, INFO: After 4901 0-1 Correctness is 50.13262599469496 percentage, Mean F1 score is None, Mean Log Prob is -1.1844179831069723, top-1 accuracy is 50.1530299938788, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 4901 examples. Total time taken is 11 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 8185 examples. Expected Total time taken to complete is 18 minutes.
+Main, INFO: After 5001 0-1 Correctness is 50.18996200759848 percentage, Mean F1 score is None, Mean Log Prob is -1.1840925554803934, top-1 accuracy is 50.20995800839832, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 5001 examples. Total time taken is 11 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 8085 examples. Expected Total time taken to complete is 18 minutes.
+Main, INFO: After 5101 0-1 Correctness is 50.38227798470888 percentage, Mean F1 score is None, Mean Log Prob is -1.1819146404112584, top-1 accuracy is 50.40188198392472, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 5101 examples. Total time taken is 11 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 7985 examples. Expected Total time taken to complete is 18 minutes.
+Main, INFO: After 5201 0-1 Correctness is 50.451836185348974 percentage, Mean F1 score is None, Mean Log Prob is -1.1821711760854474, top-1 accuracy is 50.47106325706595, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 5201 examples. Total time taken is 12 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 7885 examples. Expected Total time taken to complete is 18 minutes.
+Main, INFO: After 5301 0-1 Correctness is 50.51877004338804 percentage, Mean F1 score is None, Mean Log Prob is -1.1820694606577624, top-1 accuracy is 50.53763440860215, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 5301 examples. Total time taken is 12 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 7785 examples. Expected Total time taken to complete is 17 minutes.
+Main, INFO: After 5401 0-1 Correctness is 50.52768005924829 percentage, Mean F1 score is None, Mean Log Prob is -1.1818052290203704, top-1 accuracy is 50.546195149046476, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 5401 examples. Total time taken is 12 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 7685 examples. Expected Total time taken to complete is 17 minutes.
+Main, INFO: After 5501 0-1 Correctness is 50.518087620432645 percentage, Mean F1 score is None, Mean Log Prob is -1.1817958397640789, top-1 accuracy is 50.53626613343029, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 5501 examples. Total time taken is 12 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 7585 examples. Expected Total time taken to complete is 17 minutes.
+Main, INFO: After 5601 0-1 Correctness is 50.52669166220318 percentage, Mean F1 score is None, Mean Log Prob is -1.1822601683202374, top-1 accuracy is 50.54454561685413, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 5601 examples. Total time taken is 12 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 7485 examples. Expected Total time taken to complete is 17 minutes.
+Main, INFO: After 5701 0-1 Correctness is 50.482371513769515 percentage, Mean F1 score is None, Mean Log Prob is -1.1824601568729913, top-1 accuracy is 50.499912296088404, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 5701 examples. Total time taken is 13 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 7385 examples. Expected Total time taken to complete is 16 minutes.
+Main, INFO: After 5801 0-1 Correctness is 50.52577141872091 percentage, Mean F1 score is None, Mean Log Prob is -1.1820607702755923, top-1 accuracy is 50.543009825892085, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 5801 examples. Total time taken is 13 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 7285 examples. Expected Total time taken to complete is 16 minutes.
+Main, INFO: After 5901 0-1 Correctness is 50.36434502626673 percentage, Mean F1 score is None, Mean Log Prob is -1.1830550229331231, top-1 accuracy is 50.38129130655821, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 5901 examples. Total time taken is 13 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 7185 examples. Expected Total time taken to complete is 16 minutes.
+Main, INFO: After 6001 0-1 Correctness is 50.358273621063155 percentage, Mean F1 score is None, Mean Log Prob is -1.1834063289006975, top-1 accuracy is 50.37493751041493, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 6001 examples. Total time taken is 13 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 7085 examples. Expected Total time taken to complete is 16 minutes.
+Main, INFO: After 6101 0-1 Correctness is 50.30322897885593 percentage, Mean F1 score is None, Mean Log Prob is -1.1836049848453976, top-1 accuracy is 50.31961973446976, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 6101 examples. Total time taken is 13 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 6985 examples. Expected Total time taken to complete is 16 minutes.
+Main, INFO: After 6201 0-1 Correctness is 50.427350427350426 percentage, Mean F1 score is None, Mean Log Prob is -1.1829641528416788, top-1 accuracy is 50.443476858571195, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 6201 examples. Total time taken is 14 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 6885 examples. Expected Total time taken to complete is 15 minutes.
+Main, INFO: After 6301 0-1 Correctness is 50.37295667354388 percentage, Mean F1 score is None, Mean Log Prob is -1.1830019751884997, top-1 accuracy is 50.38882717029043, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 6301 examples. Total time taken is 14 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 6785 examples. Expected Total time taken to complete is 15 minutes.
+Main, INFO: After 6401 0-1 Correctness is 50.3515075769411 percentage, Mean F1 score is None, Mean Log Prob is -1.183434060822612, top-1 accuracy is 50.36713013591626, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 6401 examples. Total time taken is 14 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 6685 examples. Expected Total time taken to complete is 15 minutes.
+Main, INFO: After 6501 0-1 Correctness is 50.130749115520686 percentage, Mean F1 score is None, Mean Log Prob is -1.1854357966100815, top-1 accuracy is 50.14613136440548, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 6501 examples. Total time taken is 14 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 6585 examples. Expected Total time taken to complete is 15 minutes.
+Main, INFO: After 6601 0-1 Correctness is 50.12876836842903 percentage, Mean F1 score is None, Mean Log Prob is -1.1854257158773664, top-1 accuracy is 50.14391758824421, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 6601 examples. Total time taken is 15 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 6485 examples. Expected Total time taken to complete is 14 minutes.
+Main, INFO: After 6701 0-1 Correctness is 50.08207730189524 percentage, Mean F1 score is None, Mean Log Prob is -1.1850559624909038, top-1 accuracy is 50.09700044769438, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 6701 examples. Total time taken is 15 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 6385 examples. Expected Total time taken to complete is 14 minutes.
+Main, INFO: After 6801 0-1 Correctness is 50.06616674018527 percentage, Mean F1 score is None, Mean Log Prob is -1.1848554328300904, top-1 accuracy is 50.080870460226436, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 6801 examples. Total time taken is 15 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 6285 examples. Expected Total time taken to complete is 14 minutes.
+Main, INFO: After 6901 0-1 Correctness is 50.07969859440661 percentage, Mean F1 score is None, Mean Log Prob is -1.1845163515669215, top-1 accuracy is 50.094189247935084, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 6901 examples. Total time taken is 15 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 6185 examples. Expected Total time taken to complete is 14 minutes.
+Main, INFO: After 7001 0-1 Correctness is 50.06427653192401 percentage, Mean F1 score is None, Mean Log Prob is -1.1849491178495615, top-1 accuracy is 50.0785602056849, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 7001 examples. Total time taken is 15 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 6085 examples. Expected Total time taken to complete is 13 minutes.
+Main, INFO: After 7101 0-1 Correctness is 50.035206308970565 percentage, Mean F1 score is None, Mean Log Prob is -1.1855276909794141, top-1 accuracy is 50.049288832558794, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 7101 examples. Total time taken is 16 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 5985 examples. Expected Total time taken to complete is 13 minutes.
+Main, INFO: After 7201 0-1 Correctness is 50.03471740036106 percentage, Mean F1 score is None, Mean Log Prob is -1.1855889941822935, top-1 accuracy is 50.048604360505486, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 7201 examples. Total time taken is 16 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 5885 examples. Expected Total time taken to complete is 13 minutes.
+Main, INFO: After 7301 0-1 Correctness is 49.965758115326665 percentage, Mean F1 score is None, Mean Log Prob is -1.1859482996162691, top-1 accuracy is 49.979454869196, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 7301 examples. Total time taken is 16 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 5785 examples. Expected Total time taken to complete is 13 minutes.
+Main, INFO: After 7401 0-1 Correctness is 49.979732468585325 percentage, Mean F1 score is None, Mean Log Prob is -1.1852556557578664, top-1 accuracy is 49.99324415619511, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 7401 examples. Total time taken is 16 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 5685 examples. Expected Total time taken to complete is 12 minutes.
+Main, INFO: After 7501 0-1 Correctness is 49.99333422210372 percentage, Mean F1 score is None, Mean Log Prob is -1.185295742800229, top-1 accuracy is 50.00666577789628, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 7501 examples. Total time taken is 17 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 5585 examples. Expected Total time taken to complete is 12 minutes.
+Main, INFO: After 7601 0-1 Correctness is 49.94079726351796 percentage, Mean F1 score is None, Mean Log Prob is -1.1858500763822928, top-1 accuracy is 49.953953427180636, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 7601 examples. Total time taken is 17 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 5485 examples. Expected Total time taken to complete is 12 minutes.
+Main, INFO: After 7701 0-1 Correctness is 49.9285807038047 percentage, Mean F1 score is None, Mean Log Prob is -1.1856177155730971, top-1 accuracy is 49.941566030385665, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 7701 examples. Total time taken is 17 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 5385 examples. Expected Total time taken to complete is 12 minutes.
+Main, INFO: After 7801 0-1 Correctness is 49.82694526342777 percentage, Mean F1 score is None, Mean Log Prob is -1.1864630708005577, top-1 accuracy is 49.83976413280349, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 7801 examples. Total time taken is 17 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 5285 examples. Expected Total time taken to complete is 12 minutes.
+Main, INFO: After 7901 0-1 Correctness is 49.80382230097456 percentage, Mean F1 score is None, Mean Log Prob is -1.1866821986242966, top-1 accuracy is 49.81647892671814, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 7901 examples. Total time taken is 17 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 5185 examples. Expected Total time taken to complete is 11 minutes.
+Main, INFO: After 8001 0-1 Correctness is 49.8437695288089 percentage, Mean F1 score is None, Mean Log Prob is -1.1866980422930247, top-1 accuracy is 49.856267966504184, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 8001 examples. Total time taken is 18 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 5085 examples. Expected Total time taken to complete is 11 minutes.
+Main, INFO: After 8101 0-1 Correctness is 49.870386372052835 percentage, Mean F1 score is None, Mean Log Prob is -1.1861649641923264, top-1 accuracy is 49.88273052709542, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 8101 examples. Total time taken is 18 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 4985 examples. Expected Total time taken to complete is 11 minutes.
+Main, INFO: After 8201 0-1 Correctness is 49.88416046823558 percentage, Mean F1 score is None, Mean Log Prob is -1.185995929129399, top-1 accuracy is 49.89635410315815, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 8201 examples. Total time taken is 18 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 4885 examples. Expected Total time taken to complete is 11 minutes.
+Main, INFO: After 8301 0-1 Correctness is 49.99397662932177 percentage, Mean F1 score is None, Mean Log Prob is -1.1851523305483431, top-1 accuracy is 50.00602337067823, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 8301 examples. Total time taken is 18 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 4785 examples. Expected Total time taken to complete is 10 minutes.
+Main, INFO: After 8401 0-1 Correctness is 49.99404832758005 percentage, Mean F1 score is None, Mean Log Prob is -1.1851839930929466, top-1 accuracy is 50.00595167241995, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 8401 examples. Total time taken is 19 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 4685 examples. Expected Total time taken to complete is 10 minutes.
+Main, INFO: After 8501 0-1 Correctness is 50.05293494882955 percentage, Mean F1 score is None, Mean Log Prob is -1.1844059302412528, top-1 accuracy is 50.06469827079167, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 8501 examples. Total time taken is 19 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 4585 examples. Expected Total time taken to complete is 10 minutes.
+Main, INFO: After 8601 0-1 Correctness is 50.06394605278456 percentage, Mean F1 score is None, Mean Log Prob is -1.184504845002795, top-1 accuracy is 50.0755726078363, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 8601 examples. Total time taken is 19 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 4485 examples. Expected Total time taken to complete is 10 minutes.
+Main, INFO: After 8701 0-1 Correctness is 49.9597747385358 percentage, Mean F1 score is None, Mean Log Prob is -1.1855690827651648, top-1 accuracy is 49.971267670382716, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 8701 examples. Total time taken is 19 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 4385 examples. Expected Total time taken to complete is 9 minutes.
+Main, INFO: After 8801 0-1 Correctness is 49.98295648221793 percentage, Mean F1 score is None, Mean Log Prob is -1.1852458821360516, top-1 accuracy is 49.994318827405976, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 8801 examples. Total time taken is 19 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 4285 examples. Expected Total time taken to complete is 9 minutes.
+Main, INFO: After 8901 0-1 Correctness is 50.03932142455904 percentage, Mean F1 score is None, Mean Log Prob is -1.1849913858400412, top-1 accuracy is 50.05055611729019, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 8901 examples. Total time taken is 20 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 4185 examples. Expected Total time taken to complete is 9 minutes.
+Main, INFO: After 9001 0-1 Correctness is 50.1055438284635 percentage, Mean F1 score is None, Mean Log Prob is -1.1842147447628228, top-1 accuracy is 50.116653705143875, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 9001 examples. Total time taken is 20 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 4085 examples. Expected Total time taken to complete is 9 minutes.
+Main, INFO: After 9101 0-1 Correctness is 50.07142072299747 percentage, Mean F1 score is None, Mean Log Prob is -1.1842366725406126, top-1 accuracy is 50.082408526535545, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 9101 examples. Total time taken is 20 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 3985 examples. Expected Total time taken to complete is 9 minutes.
+Main, INFO: After 9201 0-1 Correctness is 50.04890772742093 percentage, Mean F1 score is None, Mean Log Prob is -1.1843274896325735, top-1 accuracy is 50.05977611129225, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 9201 examples. Total time taken is 20 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 3885 examples. Expected Total time taken to complete is 8 minutes.
+Main, INFO: After 9301 0-1 Correctness is 50.05913342651328 percentage, Mean F1 score is None, Mean Log Prob is -1.183965348643701, top-1 accuracy is 50.0698849586066, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 9301 examples. Total time taken is 21 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 3785 examples. Expected Total time taken to complete is 8 minutes.
+Main, INFO: After 9401 0-1 Correctness is 49.98404425061164 percentage, Mean F1 score is None, Mean Log Prob is -1.184149586727056, top-1 accuracy is 49.99468141687055, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 9401 examples. Total time taken is 21 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 3685 examples. Expected Total time taken to complete is 8 minutes.
+Main, INFO: After 9501 0-1 Correctness is 49.963161772445005 percentage, Mean F1 score is None, Mean Log Prob is -1.1848855568677321, top-1 accuracy is 49.97368698031786, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 9501 examples. Total time taken is 21 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 3585 examples. Expected Total time taken to complete is 8 minutes.
+Main, INFO: After 9601 0-1 Correctness is 49.99479220914488 percentage, Mean F1 score is None, Mean Log Prob is -1.1848849017891259, top-1 accuracy is 50.00520779085512, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 9601 examples. Total time taken is 21 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 3485 examples. Expected Total time taken to complete is 7 minutes.
+Main, INFO: After 9701 0-1 Correctness is 49.95361302958458 percentage, Mean F1 score is None, Mean Log Prob is -1.1853177781025659, top-1 accuracy is 49.96392124523245, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 9701 examples. Total time taken is 21 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 3385 examples. Expected Total time taken to complete is 7 minutes.
+Main, INFO: After 9801 0-1 Correctness is 50.066319763289464 percentage, Mean F1 score is None, Mean Log Prob is -1.1845038564682444, top-1 accuracy is 50.076522803795534, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 9801 examples. Total time taken is 22 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 3285 examples. Expected Total time taken to complete is 7 minutes.
+Main, INFO: After 9901 0-1 Correctness is 50.095949904050094 percentage, Mean F1 score is None, Mean Log Prob is -1.1844526076693689, top-1 accuracy is 50.10604989395011, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 9901 examples. Total time taken is 22 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 3185 examples. Expected Total time taken to complete is 7 minutes.
+Main, INFO: After 10001 0-1 Correctness is 50.07499250074992 percentage, Mean F1 score is None, Mean Log Prob is -1.1846680714540299, top-1 accuracy is 50.08499150084992, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 10001 examples. Total time taken is 22 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 3085 examples. Expected Total time taken to complete is 6 minutes.
+Main, INFO: After 10101 0-1 Correctness is 50.01485001485001 percentage, Mean F1 score is None, Mean Log Prob is -1.1855468037293437, top-1 accuracy is 50.02475002475003, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 10101 examples. Total time taken is 22 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 2985 examples. Expected Total time taken to complete is 6 minutes.
+Main, INFO: After 10201 0-1 Correctness is 49.906871875306344 percentage, Mean F1 score is None, Mean Log Prob is -1.1865008371377177, top-1 accuracy is 49.916674835800414, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 10201 examples. Total time taken is 23 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 2885 examples. Expected Total time taken to complete is 6 minutes.
+Main, INFO: After 10301 0-1 Correctness is 49.95631492088147 percentage, Mean F1 score is None, Mean Log Prob is -1.1861124352950076, top-1 accuracy is 49.975730511600815, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 10301 examples. Total time taken is 23 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 2785 examples. Expected Total time taken to complete is 6 minutes.
+Main, INFO: After 10401 0-1 Correctness is 50.04326507066628 percentage, Mean F1 score is None, Mean Log Prob is -1.1852249897090235, top-1 accuracy is 50.06249399096241, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 10401 examples. Total time taken is 23 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 2685 examples. Expected Total time taken to complete is 6 minutes.
+Main, INFO: After 10501 0-1 Correctness is 49.95714693838682 percentage, Mean F1 score is None, Mean Log Prob is -1.1855729958032746, top-1 accuracy is 49.97619274354823, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 10501 examples. Total time taken is 23 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 2585 examples. Expected Total time taken to complete is 5 minutes.
+Main, INFO: After 10601 0-1 Correctness is 49.93868502971418 percentage, Mean F1 score is None, Mean Log Prob is -1.1858553374424239, top-1 accuracy is 49.95755117441751, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 10601 examples. Total time taken is 23 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 2485 examples. Expected Total time taken to complete is 5 minutes.
+Main, INFO: After 10701 0-1 Correctness is 49.985982618446876 percentage, Mean F1 score is None, Mean Log Prob is -1.1853885989903892, top-1 accuracy is 50.00467246051771, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 10701 examples. Total time taken is 24 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 2385 examples. Expected Total time taken to complete is 5 minutes.
+Main, INFO: After 10801 0-1 Correctness is 50.02314600499954 percentage, Mean F1 score is None, Mean Log Prob is -1.184901176682888, top-1 accuracy is 50.04166280899916, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 10801 examples. Total time taken is 24 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 2285 examples. Expected Total time taken to complete is 5 minutes.
+Main, INFO: After 10901 0-1 Correctness is 50.05045408678103 percentage, Mean F1 score is None, Mean Log Prob is -1.184158778283019, top-1 accuracy is 50.06880102742868, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 10901 examples. Total time taken is 24 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 2185 examples. Expected Total time taken to complete is 4 minutes.
+Main, INFO: After 11001 0-1 Correctness is 50.05908553767839 percentage, Mean F1 score is None, Mean Log Prob is -1.1839777027739253, top-1 accuracy is 50.077265703117895, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 11001 examples. Total time taken is 24 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 2085 examples. Expected Total time taken to complete is 4 minutes.
+Main, INFO: After 11101 0-1 Correctness is 50.08557787586704 percentage, Mean F1 score is None, Mean Log Prob is -1.1835253203589575, top-1 accuracy is 50.10359427078642, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 11101 examples. Total time taken is 24 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 1985 examples. Expected Total time taken to complete is 4 minutes.
+Main, INFO: After 11201 0-1 Correctness is 50.066958307293994 percentage, Mean F1 score is None, Mean Log Prob is -1.1836954008685767, top-1 accuracy is 50.08481385590572, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 11201 examples. Total time taken is 25 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 1885 examples. Expected Total time taken to complete is 4 minutes.
+Main, INFO: After 11301 0-1 Correctness is 50.12830722944872 percentage, Mean F1 score is None, Mean Log Prob is -1.1830812732383915, top-1 accuracy is 50.1460047783382, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 11301 examples. Total time taken is 25 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 1785 examples. Expected Total time taken to complete is 4 minutes.
+Main, INFO: After 11401 0-1 Correctness is 50.17103762827822 percentage, Mean F1 score is None, Mean Log Prob is -1.1826407590745551, top-1 accuracy is 50.188579949127266, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 11401 examples. Total time taken is 25 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 1685 examples. Expected Total time taken to complete is 3 minutes.
+Main, INFO: After 11501 0-1 Correctness is 50.16955047387184 percentage, Mean F1 score is None, Mean Log Prob is -1.1828043714791483, top-1 accuracy is 50.18694026606382, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 11501 examples. Total time taken is 25 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 1585 examples. Expected Total time taken to complete is 3 minutes.
+Main, INFO: After 11601 0-1 Correctness is 50.09050943884148 percentage, Mean F1 score is None, Mean Log Prob is -1.1833608017616382, top-1 accuracy is 50.10774933195414, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 11601 examples. Total time taken is 26 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 1485 examples. Expected Total time taken to complete is 3 minutes.
+Main, INFO: After 11701 0-1 Correctness is 50.08973592000684 percentage, Mean F1 score is None, Mean Log Prob is -1.183371819713036, top-1 accuracy is 50.106828476198615, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 11701 examples. Total time taken is 26 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 1385 examples. Expected Total time taken to complete is 3 minutes.
+Main, INFO: After 11801 0-1 Correctness is 50.004236929073805 percentage, Mean F1 score is None, Mean Log Prob is -1.1842856103308614, top-1 accuracy is 50.02118464536904, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 11801 examples. Total time taken is 26 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 1285 examples. Expected Total time taken to complete is 2 minutes.
+Main, INFO: After 11901 0-1 Correctness is 50.05461725905386 percentage, Mean F1 score is None, Mean Log Prob is -1.1839511717941449, top-1 accuracy is 50.071422569531975, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 11901 examples. Total time taken is 26 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 1185 examples. Expected Total time taken to complete is 2 minutes.
+Main, INFO: After 12001 0-1 Correctness is 49.99583368052662 percentage, Mean F1 score is None, Mean Log Prob is -1.1845728475027766, top-1 accuracy is 50.01249895842013, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 12001 examples. Total time taken is 26 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 1085 examples. Expected Total time taken to complete is 2 minutes.
+Main, INFO: After 12101 0-1 Correctness is 50.02065944963226 percentage, Mean F1 score is None, Mean Log Prob is -1.1842894389549372, top-1 accuracy is 50.03718700933807, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 12101 examples. Total time taken is 27 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 985 examples. Expected Total time taken to complete is 2 minutes.
+Main, INFO: After 12201 0-1 Correctness is 50.04507827227277 percentage, Mean F1 score is None, Mean Log Prob is -1.183964007516912, top-1 accuracy is 50.06147037128104, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 12201 examples. Total time taken is 27 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 885 examples. Expected Total time taken to complete is 1 minutes.
+Main, INFO: After 12301 0-1 Correctness is 50.028452971303146 percentage, Mean F1 score is None, Mean Log Prob is -1.1843035709721297, top-1 accuracy is 50.0447118120478, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 12301 examples. Total time taken is 27 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 785 examples. Expected Total time taken to complete is 1 minutes.
+Main, INFO: After 12401 0-1 Correctness is 50.02015966454318 percentage, Mean F1 score is None, Mean Log Prob is -1.1845460096757918, top-1 accuracy is 50.03628739617773, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 12401 examples. Total time taken is 27 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 685 examples. Expected Total time taken to complete is 1 minutes.
+Main, INFO: After 12501 0-1 Correctness is 50.059995200383966 percentage, Mean F1 score is None, Mean Log Prob is -1.1840913400117155, top-1 accuracy is 50.07599392048636, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 12501 examples. Total time taken is 28 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 585 examples. Expected Total time taken to complete is 1 minutes.
+Main, INFO: After 12601 0-1 Correctness is 50.067454963891755 percentage, Mean F1 score is None, Mean Log Prob is -1.1838677173100354, top-1 accuracy is 50.08332672010158, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 12601 examples. Total time taken is 28 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 485 examples. Expected Total time taken to complete is 1 minutes.
+Main, INFO: After 12701 0-1 Correctness is 50.027556885284625 percentage, Mean F1 score is None, Mean Log Prob is -1.1842209965509183, top-1 accuracy is 50.04330367687584, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 12701 examples. Total time taken is 28 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 385 examples. Expected Total time taken to complete is 51 second.
+Main, INFO: After 12801 0-1 Correctness is 50.01952972424029 percentage, Mean F1 score is None, Mean Log Prob is -1.1841580505208498, top-1 accuracy is 50.03515350363253, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 12801 examples. Total time taken is 28 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 285 examples. Expected Total time taken to complete is 38 second.
+Main, INFO: After 12901 0-1 Correctness is 50.01937834276413 percentage, Mean F1 score is None, Mean Log Prob is -1.1842067192256123, top-1 accuracy is 50.034881016975426, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 12901 examples. Total time taken is 28 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 185 examples. Expected Total time taken to complete is 24 second.
+Main, INFO: After 13001 0-1 Correctness is 50.011537574032765 percentage, Mean F1 score is None, Mean Log Prob is -1.1843103970479858, top-1 accuracy is 50.026921006076456, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Processed 13001 examples. Total time taken is 29 minutes. Avg time per example is 0 second.
+Main, INFO: Remaining 85 examples. Expected Total time taken to complete is 11 second.
+Main, INFO: Saving results. Final Performance is given below:
+Main, INFO: Final Performance: Dataset size 13086 0-1 Correctness is 50.015283509093685 percentage, Mean F1 score is None, Mean Log Prob is -1.184589872331716, top-1 accuracy is 50.03056701818738, top-10 accuracy is 100.0, top-5 accuracy is 100.0.
+Main, INFO: Time taken to store all results 0 second
+Main, INFO: Experimented Completed.
