@@ -48,7 +48,7 @@ class GPTJExperiment:
                                                    lname=args.lname,
                                                    lnum=args.lnum,
                                                    rate=args.rate,
-                                                   intervention=args.intervention,
+                                                   intervention='vendi-score',
                                                    logger=logger,
                                                    in_place=True)
 

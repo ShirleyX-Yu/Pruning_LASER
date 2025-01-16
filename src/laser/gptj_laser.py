@@ -2,7 +2,7 @@ import torch
 
 from copy import deepcopy
 from laser.abstract_laser import AbstractLaser
-from laser.matrix_utils import do_low_rank, sorted_mat, prune
+from laser.matrix_utils import do_vendi_approx, do_low_rank, sorted_mat, prune
 
 
 class GPTJLaser(AbstractLaser):
@@ -82,7 +82,7 @@ class GPTJLaser(AbstractLaser):
         return modify_flag
 
     @staticmethod
-    def get_edited_model(model, lname, lnum, rate, intervention="rank-reduction", logger=None, in_place=True):
+    def get_edited_model(model, lname, lnum, rate, intervention="vendi-score", logger=None, in_place=True):
 
         if in_place:
             model_edit = model
@@ -118,12 +118,17 @@ class GPTJLaser(AbstractLaser):
                 mat_analysis = prune(mat_analysis, mat_sort, rate)  # pruned_mat
                 mat_analysis = torch.from_numpy(mat_analysis)
 
+            # Do rank reduction
             elif intervention == 'rank-reduction':
-                # Do rank reduction
                 mat_analysis_tensor = deepcopy(param)
-                # replace with VENDI score
                 # referencing the call in matrix_utils.py (similarily in laser_compose.py)
                 mat_analysis = do_low_rank(mat_analysis_tensor.type(torch.float32), (10 - rate) * 0.1)
+            
+            # for VENDI scores
+            elif intervention == 'vendi-score': 
+                print("running vendi-score...")
+                mat_analysis_tensor = deepcopy(param)
+                mat_analysis = do_vendi_approx(mat_analysis_tensor.type(torch.float32), (10 - rate) * 0.1)
 
             elif intervention == 'zero':
                 mat_analysis_tensor = deepcopy(param)

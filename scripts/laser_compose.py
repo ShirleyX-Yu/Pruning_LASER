@@ -48,6 +48,7 @@ with open(dataset_loc) as f:
 
 # Helper Funcs
 # replace do_low_rank with VENDI score
+# not being called (use the do_low_rank in matrx_utils.py)
 def do_low_rank(weight, k, debug=False):
     assert weight.ndim == 2
 

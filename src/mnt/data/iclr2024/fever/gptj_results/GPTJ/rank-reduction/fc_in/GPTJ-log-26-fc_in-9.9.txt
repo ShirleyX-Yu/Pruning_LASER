@@ -1,0 +1,291 @@
+Main, INFO: ==================================================
+Main, INFO: Created a new Experiment. Model GPTJ
+Main, INFO: ==================================================
+Main, INFO: >>>> Command line argument rate => 9.9
+Main, INFO: >>>> Command line argument dtpts => 22000
+Main, INFO: >>>> Command line argument batch_size => 256
+Main, INFO: >>>> Command line argument max_len => 1
+Main, INFO: >>>> Command line argument k => 10
+Main, INFO: >>>> Command line argument intervention => rank-reduction
+Main, INFO: >>>> Command line argument lname => fc_in
+Main, INFO: >>>> Command line argument lnum => 26
+Main, INFO: >>>> Command line argument model_path => /mnt/data/Llama2/Llama-2-7b-hf
+Main, INFO: >>>> Command line argument home_dir => /mnt/data/iclr2024/fever/gptj_results
+Main, INFO: >>>> Command line argument dataset_file => /mnt/data/counterfact
+Main, INFO: ==================================================
+urllib3.connectionpool, DEBUG: https://huggingface.co:443 "GET /api/datasets/EleutherAI/fever HTTP/1.1" 200 3055
+urllib3.connectionpool, DEBUG: Starting new HTTPS connection (1): s3.amazonaws.com:443
+urllib3.connectionpool, DEBUG: https://s3.amazonaws.com:443 "HEAD /datasets.huggingface.co/datasets/datasets/EleutherAI/fever/EleutherAI/fever.py HTTP/1.1" 404 0
+urllib3.connectionpool, DEBUG: Starting new HTTPS connection (1): huggingface.co:443
+urllib3.connectionpool, DEBUG: https://huggingface.co:443 "HEAD /datasets/EleutherAI/fever/resolve/main/fever.py HTTP/1.1" 200 0
+urllib3.connectionpool, DEBUG: Starting new HTTPS connection (1): huggingface.co:443
+urllib3.connectionpool, DEBUG: https://huggingface.co:443 "HEAD /datasets/EleutherAI/fever/resolve/main/dataset_infos.json HTTP/1.1" 404 0
+urllib3.connectionpool, DEBUG: Starting new HTTPS connection (1): huggingface.co:443
+urllib3.connectionpool, DEBUG: https://huggingface.co:443 "HEAD /datasets/EleutherAI/fever/resolve/main/README.md HTTP/1.1" 200 0
+datasets.load, WARNING: Using the latest cached version of the module from /Users/shirleyyu/.cache/huggingface/modules/datasets_modules/datasets/EleutherAI--fever/aaf78d795e7eb335dcf2edfd8b2eae7b6030e171263fc0205db77ccedc5ffdf6 (last modified on Mon Jan  6 21:58:22 2025) since it couldn't be found locally at EleutherAI/fever., or remotely on the Hugging Face Hub.
+Main, INFO: ==================================================
+Main, INFO: Created a new Experiment. Model GPTJ
+Main, INFO: ==================================================
+Main, INFO: >>>> Command line argument rate => 9.9
+Main, INFO: >>>> Command line argument dtpts => 22000
+Main, INFO: >>>> Command line argument batch_size => 256
+Main, INFO: >>>> Command line argument max_len => 1
+Main, INFO: >>>> Command line argument k => 10
+Main, INFO: >>>> Command line argument intervention => rank-reduction
+Main, INFO: >>>> Command line argument lname => fc_in
+Main, INFO: >>>> Command line argument lnum => 26
+Main, INFO: >>>> Command line argument model_path => /mnt/data/Llama2/Llama-2-7b-hf
+Main, INFO: >>>> Command line argument home_dir => /mnt/data/iclr2024/fever/gptj_results
+Main, INFO: >>>> Command line argument dataset_file => /mnt/data/counterfact
+Main, INFO: ==================================================
+urllib3.connectionpool, DEBUG: https://huggingface.co:443 "GET /api/datasets/EleutherAI/fever HTTP/1.1" 200 2747
+urllib3.connectionpool, DEBUG: Starting new HTTPS connection (1): s3.amazonaws.com:443
+urllib3.connectionpool, DEBUG: https://s3.amazonaws.com:443 "HEAD /datasets.huggingface.co/datasets/datasets/EleutherAI/fever/EleutherAI/fever.py HTTP/1.1" 404 0
+urllib3.connectionpool, DEBUG: Starting new HTTPS connection (1): huggingface.co:443
+urllib3.connectionpool, DEBUG: https://huggingface.co:443 "HEAD /datasets/EleutherAI/fever/resolve/main/fever.py HTTP/1.1" 200 0
+urllib3.connectionpool, DEBUG: Starting new HTTPS connection (1): huggingface.co:443
+urllib3.connectionpool, DEBUG: https://huggingface.co:443 "HEAD /datasets/EleutherAI/fever/resolve/main/dataset_infos.json HTTP/1.1" 404 0
+urllib3.connectionpool, DEBUG: Starting new HTTPS connection (1): huggingface.co:443
+urllib3.connectionpool, DEBUG: https://huggingface.co:443 "HEAD /datasets/EleutherAI/fever/resolve/main/README.md HTTP/1.1" 200 0
+fsspec.local, DEBUG: open file: /Users/shirleyyu/.cache/huggingface/datasets/EleutherAI___fever/v1.0/1.0.0/aaf78d795e7eb335dcf2edfd8b2eae7b6030e171263fc0205db77ccedc5ffdf6/dataset_info.json
+fsspec.local, DEBUG: open file: /Users/shirleyyu/.cache/huggingface/datasets/EleutherAI___fever/v1.0/1.0.0/aaf78d795e7eb335dcf2edfd8b2eae7b6030e171263fc0205db77ccedc5ffdf6/dataset_info.json
+Main, INFO: Raw paper_dev set is 14475 and paper_test set is 14150.
+Main, INFO: Paper_dev and paper_test splits dont have a common context/claim.
+Main, INFO: After filtering paper_dev set is 6510 and paper_test set is 6576.
+Main, INFO: Read dataset of size 13086 of which the first 6510 examples are from the validation set and the remaining 6576 from the test split.
+Main, INFO: Starting a new intervention with rate 9.9. Dataset size 13086. Batch size 256
+Main, INFO: Editing a GPTJForCausalLM Model
+Main, INFO: Updating Layer: transformer.h.26.mlp.fc_in.weight
+Main, INFO: Total number of parameters updated is 1
+Main, INFO: Edited and put model on cpu in time 0 second
+Main, INFO: ==================================================
+Main, INFO: Created a new Experiment. Model GPTJ
+Main, INFO: ==================================================
+Main, INFO: >>>> Command line argument rate => 9.9
+Main, INFO: >>>> Command line argument dtpts => 22000
+Main, INFO: >>>> Command line argument batch_size => 256
+Main, INFO: >>>> Command line argument max_len => 1
+Main, INFO: >>>> Command line argument k => 10
+Main, INFO: >>>> Command line argument intervention => rank-reduction
+Main, INFO: >>>> Command line argument lname => fc_in
+Main, INFO: >>>> Command line argument lnum => 26
+Main, INFO: >>>> Command line argument model_path => /mnt/data/Llama2/Llama-2-7b-hf
+Main, INFO: >>>> Command line argument home_dir => /mnt/data/iclr2024/fever/gptj_results
+Main, INFO: >>>> Command line argument dataset_file => /mnt/data/counterfact
+Main, INFO: ==================================================
+urllib3.connectionpool, DEBUG: https://huggingface.co:443 "GET /api/datasets/EleutherAI/fever HTTP/1.1" 200 2747
+urllib3.connectionpool, DEBUG: Starting new HTTPS connection (1): s3.amazonaws.com:443
+urllib3.connectionpool, DEBUG: https://s3.amazonaws.com:443 "HEAD /datasets.huggingface.co/datasets/datasets/EleutherAI/fever/EleutherAI/fever.py HTTP/1.1" 404 0
+urllib3.connectionpool, DEBUG: Starting new HTTPS connection (1): huggingface.co:443
+urllib3.connectionpool, DEBUG: https://huggingface.co:443 "HEAD /datasets/EleutherAI/fever/resolve/main/fever.py HTTP/1.1" 200 0
+urllib3.connectionpool, DEBUG: Starting new HTTPS connection (1): huggingface.co:443
+urllib3.connectionpool, DEBUG: https://huggingface.co:443 "HEAD /datasets/EleutherAI/fever/resolve/main/dataset_infos.json HTTP/1.1" 404 0
+urllib3.connectionpool, DEBUG: Starting new HTTPS connection (1): huggingface.co:443
+urllib3.connectionpool, DEBUG: https://huggingface.co:443 "HEAD /datasets/EleutherAI/fever/resolve/main/README.md HTTP/1.1" 200 0
+fsspec.local, DEBUG: open file: /Users/shirleyyu/.cache/huggingface/datasets/EleutherAI___fever/v1.0/1.0.0/aaf78d795e7eb335dcf2edfd8b2eae7b6030e171263fc0205db77ccedc5ffdf6/dataset_info.json
+fsspec.local, DEBUG: open file: /Users/shirleyyu/.cache/huggingface/datasets/EleutherAI___fever/v1.0/1.0.0/aaf78d795e7eb335dcf2edfd8b2eae7b6030e171263fc0205db77ccedc5ffdf6/dataset_info.json
+Main, INFO: Raw paper_dev set is 14475 and paper_test set is 14150.
+Main, INFO: Paper_dev and paper_test splits dont have a common context/claim.
+Main, INFO: After filtering paper_dev set is 6510 and paper_test set is 6576.
+Main, INFO: Read dataset of size 13086 of which the first 6510 examples are from the validation set and the remaining 6576 from the test split.
+Main, INFO: Starting a new intervention with rate 9.9. Dataset size 13086. Batch size 256
+Main, INFO: Editing a GPTJForCausalLM Model
+Main, INFO: Updating Layer: transformer.h.26.mlp.fc_in.weight
+Main, INFO: ==================================================
+Main, INFO: Created a new Experiment. Model GPTJ
+Main, INFO: ==================================================
+Main, INFO: >>>> Command line argument rate => 9.9
+Main, INFO: >>>> Command line argument dtpts => 22000
+Main, INFO: >>>> Command line argument batch_size => 256
+Main, INFO: >>>> Command line argument max_len => 1
+Main, INFO: >>>> Command line argument k => 10
+Main, INFO: >>>> Command line argument intervention => rank-reduction
+Main, INFO: >>>> Command line argument lname => fc_in
+Main, INFO: >>>> Command line argument lnum => 26
+Main, INFO: >>>> Command line argument model_path => /mnt/data/Llama2/Llama-2-7b-hf
+Main, INFO: >>>> Command line argument home_dir => /mnt/data/iclr2024/fever/gptj_results
+Main, INFO: >>>> Command line argument dataset_file => /mnt/data/counterfact
+Main, INFO: ==================================================
+urllib3.connectionpool, DEBUG: https://huggingface.co:443 "GET /api/datasets/EleutherAI/fever HTTP/1.1" 200 2747
+urllib3.connectionpool, DEBUG: Starting new HTTPS connection (1): s3.amazonaws.com:443
+urllib3.connectionpool, DEBUG: https://s3.amazonaws.com:443 "HEAD /datasets.huggingface.co/datasets/datasets/EleutherAI/fever/EleutherAI/fever.py HTTP/1.1" 404 0
+urllib3.connectionpool, DEBUG: Starting new HTTPS connection (1): huggingface.co:443
+urllib3.connectionpool, DEBUG: https://huggingface.co:443 "HEAD /datasets/EleutherAI/fever/resolve/main/fever.py HTTP/1.1" 200 0
+urllib3.connectionpool, DEBUG: Starting new HTTPS connection (1): huggingface.co:443
+urllib3.connectionpool, DEBUG: https://huggingface.co:443 "HEAD /datasets/EleutherAI/fever/resolve/main/dataset_infos.json HTTP/1.1" 404 0
+urllib3.connectionpool, DEBUG: Starting new HTTPS connection (1): huggingface.co:443
+urllib3.connectionpool, DEBUG: https://huggingface.co:443 "HEAD /datasets/EleutherAI/fever/resolve/main/README.md HTTP/1.1" 200 0
+fsspec.local, DEBUG: open file: /Users/shirleyyu/.cache/huggingface/datasets/EleutherAI___fever/v1.0/1.0.0/aaf78d795e7eb335dcf2edfd8b2eae7b6030e171263fc0205db77ccedc5ffdf6/dataset_info.json
+fsspec.local, DEBUG: open file: /Users/shirleyyu/.cache/huggingface/datasets/EleutherAI___fever/v1.0/1.0.0/aaf78d795e7eb335dcf2edfd8b2eae7b6030e171263fc0205db77ccedc5ffdf6/dataset_info.json
+Main, INFO: Raw paper_dev set is 14475 and paper_test set is 14150.
+Main, INFO: Paper_dev and paper_test splits dont have a common context/claim.
+Main, INFO: After filtering paper_dev set is 6510 and paper_test set is 6576.
+Main, INFO: Read dataset of size 13086 of which the first 6510 examples are from the validation set and the remaining 6576 from the test split.
+Main, INFO: Starting a new intervention with rate 9.9. Dataset size 13086. Batch size 256
+Main, INFO: Editing a GPTJForCausalLM Model
+Main, INFO: Updating Layer: transformer.h.26.mlp.fc_in.weight
+Main, INFO: ==================================================
+Main, INFO: Created a new Experiment. Model GPTJ
+Main, INFO: ==================================================
+Main, INFO: >>>> Command line argument rate => 9.9
+Main, INFO: >>>> Command line argument dtpts => 22000
+Main, INFO: >>>> Command line argument batch_size => 256
+Main, INFO: >>>> Command line argument max_len => 1
+Main, INFO: >>>> Command line argument k => 10
+Main, INFO: >>>> Command line argument intervention => rank-reduction
+Main, INFO: >>>> Command line argument lname => fc_in
+Main, INFO: >>>> Command line argument lnum => 26
+Main, INFO: >>>> Command line argument model_path => /mnt/data/Llama2/Llama-2-7b-hf
+Main, INFO: >>>> Command line argument home_dir => /mnt/data/iclr2024/fever/gptj_results
+Main, INFO: >>>> Command line argument dataset_file => /mnt/data/counterfact
+Main, INFO: ==================================================
+urllib3.connectionpool, DEBUG: https://huggingface.co:443 "GET /api/datasets/EleutherAI/fever HTTP/1.1" 200 2747
+urllib3.connectionpool, DEBUG: Starting new HTTPS connection (1): s3.amazonaws.com:443
+urllib3.connectionpool, DEBUG: https://s3.amazonaws.com:443 "HEAD /datasets.huggingface.co/datasets/datasets/EleutherAI/fever/EleutherAI/fever.py HTTP/1.1" 404 0
+urllib3.connectionpool, DEBUG: Starting new HTTPS connection (1): huggingface.co:443
+urllib3.connectionpool, DEBUG: https://huggingface.co:443 "HEAD /datasets/EleutherAI/fever/resolve/main/fever.py HTTP/1.1" 200 0
+urllib3.connectionpool, DEBUG: Starting new HTTPS connection (1): huggingface.co:443
+urllib3.connectionpool, DEBUG: https://huggingface.co:443 "HEAD /datasets/EleutherAI/fever/resolve/main/dataset_infos.json HTTP/1.1" 404 0
+urllib3.connectionpool, DEBUG: Starting new HTTPS connection (1): huggingface.co:443
+urllib3.connectionpool, DEBUG: https://huggingface.co:443 "HEAD /datasets/EleutherAI/fever/resolve/main/README.md HTTP/1.1" 200 0
+fsspec.local, DEBUG: open file: /Users/shirleyyu/.cache/huggingface/datasets/EleutherAI___fever/v1.0/1.0.0/aaf78d795e7eb335dcf2edfd8b2eae7b6030e171263fc0205db77ccedc5ffdf6/dataset_info.json
+fsspec.local, DEBUG: open file: /Users/shirleyyu/.cache/huggingface/datasets/EleutherAI___fever/v1.0/1.0.0/aaf78d795e7eb335dcf2edfd8b2eae7b6030e171263fc0205db77ccedc5ffdf6/dataset_info.json
+Main, INFO: Raw paper_dev set is 14475 and paper_test set is 14150.
+Main, INFO: Paper_dev and paper_test splits dont have a common context/claim.
+Main, INFO: After filtering paper_dev set is 6510 and paper_test set is 6576.
+Main, INFO: Read dataset of size 13086 of which the first 6510 examples are from the validation set and the remaining 6576 from the test split.
+Main, INFO: Starting a new intervention with rate 9.9. Dataset size 13086. Batch size 256
+Main, INFO: Editing a GPTJForCausalLM Model
+Main, INFO: Updating Layer: transformer.h.26.mlp.fc_in.weight
+Main, INFO: ==================================================
+Main, INFO: Created a new Experiment. Model GPTJ
+Main, INFO: ==================================================
+Main, INFO: >>>> Command line argument rate => 9.9
+Main, INFO: >>>> Command line argument dtpts => 22000
+Main, INFO: >>>> Command line argument batch_size => 256
+Main, INFO: >>>> Command line argument max_len => 1
+Main, INFO: >>>> Command line argument k => 10
+Main, INFO: >>>> Command line argument intervention => rank-reduction
+Main, INFO: >>>> Command line argument lname => fc_in
+Main, INFO: >>>> Command line argument lnum => 26
+Main, INFO: >>>> Command line argument model_path => /mnt/data/Llama2/Llama-2-7b-hf
+Main, INFO: >>>> Command line argument home_dir => /mnt/data/iclr2024/fever/gptj_results
+Main, INFO: >>>> Command line argument dataset_file => /mnt/data/counterfact
+Main, INFO: ==================================================
+urllib3.connectionpool, DEBUG: https://huggingface.co:443 "GET /api/datasets/EleutherAI/fever HTTP/1.1" 200 2747
+urllib3.connectionpool, DEBUG: Starting new HTTPS connection (1): s3.amazonaws.com:443
+urllib3.connectionpool, DEBUG: https://s3.amazonaws.com:443 "HEAD /datasets.huggingface.co/datasets/datasets/EleutherAI/fever/EleutherAI/fever.py HTTP/1.1" 404 0
+urllib3.connectionpool, DEBUG: Starting new HTTPS connection (1): huggingface.co:443
+urllib3.connectionpool, DEBUG: https://huggingface.co:443 "HEAD /datasets/EleutherAI/fever/resolve/main/fever.py HTTP/1.1" 200 0
+urllib3.connectionpool, DEBUG: Starting new HTTPS connection (1): huggingface.co:443
+urllib3.connectionpool, DEBUG: https://huggingface.co:443 "HEAD /datasets/EleutherAI/fever/resolve/main/dataset_infos.json HTTP/1.1" 404 0
+urllib3.connectionpool, DEBUG: Starting new HTTPS connection (1): huggingface.co:443
+urllib3.connectionpool, DEBUG: https://huggingface.co:443 "HEAD /datasets/EleutherAI/fever/resolve/main/README.md HTTP/1.1" 200 0
+fsspec.local, DEBUG: open file: /Users/shirleyyu/.cache/huggingface/datasets/EleutherAI___fever/v1.0/1.0.0/aaf78d795e7eb335dcf2edfd8b2eae7b6030e171263fc0205db77ccedc5ffdf6/dataset_info.json
+fsspec.local, DEBUG: open file: /Users/shirleyyu/.cache/huggingface/datasets/EleutherAI___fever/v1.0/1.0.0/aaf78d795e7eb335dcf2edfd8b2eae7b6030e171263fc0205db77ccedc5ffdf6/dataset_info.json
+Main, INFO: Raw paper_dev set is 14475 and paper_test set is 14150.
+Main, INFO: Paper_dev and paper_test splits dont have a common context/claim.
+Main, INFO: After filtering paper_dev set is 6510 and paper_test set is 6576.
+Main, INFO: Read dataset of size 13086 of which the first 6510 examples are from the validation set and the remaining 6576 from the test split.
+Main, INFO: Starting a new intervention with rate 9.9. Dataset size 13086. Batch size 256
+Main, INFO: Editing a GPTJForCausalLM Model
+Main, INFO: Updating Layer: transformer.h.26.mlp.fc_in.weight
+Main, INFO: ==================================================
+Main, INFO: Created a new Experiment. Model GPTJ
+Main, INFO: ==================================================
+Main, INFO: >>>> Command line argument rate => 9.9
+Main, INFO: >>>> Command line argument dtpts => 22000
+Main, INFO: >>>> Command line argument batch_size => 256
+Main, INFO: >>>> Command line argument max_len => 1
+Main, INFO: >>>> Command line argument k => 10
+Main, INFO: >>>> Command line argument intervention => rank-reduction
+Main, INFO: >>>> Command line argument lname => fc_in
+Main, INFO: >>>> Command line argument lnum => 26
+Main, INFO: >>>> Command line argument model_path => /mnt/data/Llama2/Llama-2-7b-hf
+Main, INFO: >>>> Command line argument home_dir => /mnt/data/iclr2024/fever/gptj_results
+Main, INFO: >>>> Command line argument dataset_file => /mnt/data/counterfact
+Main, INFO: ==================================================
+urllib3.connectionpool, DEBUG: https://huggingface.co:443 "GET /api/datasets/EleutherAI/fever HTTP/1.1" 200 2747
+urllib3.connectionpool, DEBUG: Starting new HTTPS connection (1): s3.amazonaws.com:443
+urllib3.connectionpool, DEBUG: https://s3.amazonaws.com:443 "HEAD /datasets.huggingface.co/datasets/datasets/EleutherAI/fever/EleutherAI/fever.py HTTP/1.1" 404 0
+urllib3.connectionpool, DEBUG: Starting new HTTPS connection (1): huggingface.co:443
+urllib3.connectionpool, DEBUG: https://huggingface.co:443 "HEAD /datasets/EleutherAI/fever/resolve/main/fever.py HTTP/1.1" 200 0
+urllib3.connectionpool, DEBUG: Starting new HTTPS connection (1): huggingface.co:443
+urllib3.connectionpool, DEBUG: https://huggingface.co:443 "HEAD /datasets/EleutherAI/fever/resolve/main/dataset_infos.json HTTP/1.1" 404 0
+urllib3.connectionpool, DEBUG: Starting new HTTPS connection (1): huggingface.co:443
+urllib3.connectionpool, DEBUG: https://huggingface.co:443 "HEAD /datasets/EleutherAI/fever/resolve/main/README.md HTTP/1.1" 200 0
+fsspec.local, DEBUG: open file: /Users/shirleyyu/.cache/huggingface/datasets/EleutherAI___fever/v1.0/1.0.0/aaf78d795e7eb335dcf2edfd8b2eae7b6030e171263fc0205db77ccedc5ffdf6/dataset_info.json
+fsspec.local, DEBUG: open file: /Users/shirleyyu/.cache/huggingface/datasets/EleutherAI___fever/v1.0/1.0.0/aaf78d795e7eb335dcf2edfd8b2eae7b6030e171263fc0205db77ccedc5ffdf6/dataset_info.json
+Main, INFO: Raw paper_dev set is 14475 and paper_test set is 14150.
+Main, INFO: Paper_dev and paper_test splits dont have a common context/claim.
+Main, INFO: After filtering paper_dev set is 6510 and paper_test set is 6576.
+Main, INFO: Read dataset of size 13086 of which the first 6510 examples are from the validation set and the remaining 6576 from the test split.
+Main, INFO: Starting a new intervention with rate 9.9. Dataset size 13086. Batch size 256
+Main, INFO: Editing a GPTJForCausalLM Model
+Main, INFO: Updating Layer: transformer.h.26.mlp.fc_in.weight
+Main, INFO: ==================================================
+Main, INFO: Created a new Experiment. Model GPTJ
+Main, INFO: ==================================================
+Main, INFO: >>>> Command line argument rate => 9.9
+Main, INFO: >>>> Command line argument dtpts => 22000
+Main, INFO: >>>> Command line argument batch_size => 256
+Main, INFO: >>>> Command line argument max_len => 1
+Main, INFO: >>>> Command line argument k => 10
+Main, INFO: >>>> Command line argument intervention => rank-reduction
+Main, INFO: >>>> Command line argument lname => fc_in
+Main, INFO: >>>> Command line argument lnum => 26
+Main, INFO: >>>> Command line argument model_path => /mnt/data/Llama2/Llama-2-7b-hf
+Main, INFO: >>>> Command line argument home_dir => /mnt/data/iclr2024/fever/gptj_results
+Main, INFO: >>>> Command line argument dataset_file => /mnt/data/counterfact
+Main, INFO: ==================================================
+urllib3.connectionpool, DEBUG: https://huggingface.co:443 "GET /api/datasets/EleutherAI/fever HTTP/1.1" 200 2747
+urllib3.connectionpool, DEBUG: Starting new HTTPS connection (1): s3.amazonaws.com:443
+urllib3.connectionpool, DEBUG: https://s3.amazonaws.com:443 "HEAD /datasets.huggingface.co/datasets/datasets/EleutherAI/fever/EleutherAI/fever.py HTTP/1.1" 404 0
+urllib3.connectionpool, DEBUG: Starting new HTTPS connection (1): huggingface.co:443
+urllib3.connectionpool, DEBUG: https://huggingface.co:443 "HEAD /datasets/EleutherAI/fever/resolve/main/fever.py HTTP/1.1" 200 0
+urllib3.connectionpool, DEBUG: Starting new HTTPS connection (1): huggingface.co:443
+urllib3.connectionpool, DEBUG: https://huggingface.co:443 "HEAD /datasets/EleutherAI/fever/resolve/main/dataset_infos.json HTTP/1.1" 404 0
+urllib3.connectionpool, DEBUG: Starting new HTTPS connection (1): huggingface.co:443
+urllib3.connectionpool, DEBUG: https://huggingface.co:443 "HEAD /datasets/EleutherAI/fever/resolve/main/README.md HTTP/1.1" 200 0
+fsspec.local, DEBUG: open file: /Users/shirleyyu/.cache/huggingface/datasets/EleutherAI___fever/v1.0/1.0.0/aaf78d795e7eb335dcf2edfd8b2eae7b6030e171263fc0205db77ccedc5ffdf6/dataset_info.json
+fsspec.local, DEBUG: open file: /Users/shirleyyu/.cache/huggingface/datasets/EleutherAI___fever/v1.0/1.0.0/aaf78d795e7eb335dcf2edfd8b2eae7b6030e171263fc0205db77ccedc5ffdf6/dataset_info.json
+Main, INFO: Raw paper_dev set is 14475 and paper_test set is 14150.
+Main, INFO: Paper_dev and paper_test splits dont have a common context/claim.
+Main, INFO: After filtering paper_dev set is 6510 and paper_test set is 6576.
+Main, INFO: Read dataset of size 13086 of which the first 6510 examples are from the validation set and the remaining 6576 from the test split.
+Main, INFO: Starting a new intervention with rate 9.9. Dataset size 13086. Batch size 256
+Main, INFO: Editing a GPTJForCausalLM Model
+Main, INFO: Updating Layer: transformer.h.26.mlp.fc_in.weight
+Main, INFO: ==================================================
+Main, INFO: Created a new Experiment. Model GPTJ
+Main, INFO: ==================================================
+Main, INFO: >>>> Command line argument rate => 9.9
+Main, INFO: >>>> Command line argument dtpts => 22000
+Main, INFO: >>>> Command line argument batch_size => 256
+Main, INFO: >>>> Command line argument max_len => 1
+Main, INFO: >>>> Command line argument k => 10
+Main, INFO: >>>> Command line argument intervention => rank-reduction
+Main, INFO: >>>> Command line argument lname => fc_in
+Main, INFO: >>>> Command line argument lnum => 26
+Main, INFO: >>>> Command line argument model_path => /mnt/data/Llama2/Llama-2-7b-hf
+Main, INFO: >>>> Command line argument home_dir => /mnt/data/iclr2024/fever/gptj_results
+Main, INFO: >>>> Command line argument dataset_file => /mnt/data/counterfact
+Main, INFO: ==================================================
+urllib3.connectionpool, DEBUG: https://huggingface.co:443 "GET /api/datasets/EleutherAI/fever HTTP/1.1" 200 3055
+urllib3.connectionpool, DEBUG: Starting new HTTPS connection (1): s3.amazonaws.com:443
+urllib3.connectionpool, DEBUG: https://s3.amazonaws.com:443 "HEAD /datasets.huggingface.co/datasets/datasets/EleutherAI/fever/EleutherAI/fever.py HTTP/1.1" 404 0
+urllib3.connectionpool, DEBUG: Starting new HTTPS connection (1): huggingface.co:443
+urllib3.connectionpool, DEBUG: https://huggingface.co:443 "HEAD /datasets/EleutherAI/fever/resolve/main/fever.py HTTP/1.1" 200 0
+urllib3.connectionpool, DEBUG: Starting new HTTPS connection (1): huggingface.co:443
+urllib3.connectionpool, DEBUG: https://huggingface.co:443 "HEAD /datasets/EleutherAI/fever/resolve/main/dataset_infos.json HTTP/1.1" 404 0
+urllib3.connectionpool, DEBUG: Starting new HTTPS connection (1): huggingface.co:443
+urllib3.connectionpool, DEBUG: https://huggingface.co:443 "HEAD /datasets/EleutherAI/fever/resolve/main/README.md HTTP/1.1" 200 0
+fsspec.local, DEBUG: open file: /Users/shirleyyu/.cache/huggingface/datasets/EleutherAI___fever/v1.0/1.0.0/aaf78d795e7eb335dcf2edfd8b2eae7b6030e171263fc0205db77ccedc5ffdf6/dataset_info.json
+fsspec.local, DEBUG: open file: /Users/shirleyyu/.cache/huggingface/datasets/EleutherAI___fever/v1.0/1.0.0/aaf78d795e7eb335dcf2edfd8b2eae7b6030e171263fc0205db77ccedc5ffdf6/dataset_info.json
+Main, INFO: Raw paper_dev set is 14475 and paper_test set is 14150.
+Main, INFO: Paper_dev and paper_test splits dont have a common context/claim.
+Main, INFO: After filtering paper_dev set is 6510 and paper_test set is 6576.
+Main, INFO: Read dataset of size 13086 of which the first 6510 examples are from the validation set and the remaining 6576 from the test split.
+Main, INFO: Starting a new intervention with rate 9.9. Dataset size 13086. Batch size 256
+Main, INFO: Editing a GPTJForCausalLM Model
+Main, INFO: Updating Layer: transformer.h.26.mlp.fc_in.weight

@@ -106,6 +106,7 @@ class DatasetMetrics:
                                        if k.startswith(DatasetMetrics.TOPK)])
             top_k_results = ", " + top_k_results + "."
 
+        # location of output for terminal
         self.logger.log(f"{prefix} 0-1 Correctness is {results[DatasetMetrics.CORRECTNESS]} percentage, "
                         f"Mean F1 score is {results[DatasetMetrics.AvgF1Score]}, "
                         f"Mean Log Prob is {results[DatasetMetrics.MeanLogProb]}{top_k_results}")
@@ -113,6 +114,7 @@ class DatasetMetrics:
     def agg_to_dict(self):
 
         # Compute aggregate dataset scores
+        # accuracy calculation
         accuracy = (self.num_correct * 100.0) / float(max(1, self.num_examples))
         if self.sum_f1_score is None:
             avg_f1_score = None
