@@ -65,7 +65,7 @@ def do_low_rank(weight, k, debug=False, niter=2):
 
     return weight_approx
 
-'''
+
 # function to do low rank approx using VENDI scores
 def do_vendi_approx(weight, k, debug=False): 
     assert weight.ndim == 2
@@ -112,7 +112,6 @@ def do_vendi_approx(weight, k, debug=False):
     weight_approx = torch.nn.Parameter(weight_approx)
 
     return weight_approx
-'''
 
 
 
