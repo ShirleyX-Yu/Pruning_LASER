@@ -48,7 +48,7 @@ class GPTJExperiment:
                                                    lname=args.lname,
                                                    lnum=args.lnum,
                                                    rate=args.rate,
-                                                   intervention='vendi-score',
+                                                   intervention=args.intervention,
                                                    logger=logger,
                                                    in_place=True)
 
@@ -223,7 +223,7 @@ if __name__ == '__main__':
     parser.add_argument('--max_len', type=int, default=1, help='maximum length for generation')
     parser.add_argument('--k', type=int, default=10, help='top k for evaluation')
     parser.add_argument('--intervention', type=str, default="rank-reduction",
-                        choices=['dropout', 'rank-reduction'], help="what type of intervention to perform")
+                        choices=['dropout', 'rank-reduction', 'vendi-score'], help="what type of intervention to perform")
     parser.add_argument('--lname', type=str, default="None",
                         choices=['k_proj', 'q_proj', 'v_proj', 'out_proj', 'fc_in', 'fc_up', 'fc_out', 'None', 'dont',
                                  "all", "mlp", "attn"],

@@ -82,7 +82,7 @@ class GPTJLaser(AbstractLaser):
         return modify_flag
 
     @staticmethod
-    def get_edited_model(model, lname, lnum, rate, intervention="vendi-score", logger=None, in_place=True):
+    def get_edited_model(model, lname, lnum, rate, intervention="rank-reduction", logger=None, in_place=True):
 
         if in_place:
             model_edit = model
@@ -119,7 +119,8 @@ class GPTJLaser(AbstractLaser):
                 mat_analysis = torch.from_numpy(mat_analysis)
 
             # Do rank reduction
-            elif intervention == 'rank-reduction':
+            elif intervention == 'rank-reduction':      
+                print("running SVD rank reduction")
                 mat_analysis_tensor = deepcopy(param)
                 # referencing the call in matrix_utils.py (similarily in laser_compose.py)
                 mat_analysis = do_low_rank(mat_analysis_tensor.type(torch.float32), (10 - rate) * 0.1)
