@@ -1,7 +1,8 @@
 import torch
 import numpy as np
 import matplotlib.pyplot as plt
-from laser.q_vendi import score, sequential_maximize_score
+from laser.q_vendi import score, sequential_maximize_score, sequential_maximize_score_i
+import pickle
 
 
 # Helper functions for abs weight pruning
@@ -78,8 +79,7 @@ def do_vendi_approx(weight, k, debug=False):
 
     # vendi score approx steps below
     # convert to a numpy array
-    weight0 = weight
-    weight1 = weight.detach().numpy()
+    numpyWeight = weight.detach().numpy()
 
     def centered_gaussian(x):
         return np.exp(np.sum(-x**2, axis=-1))
@@ -89,17 +89,30 @@ def do_vendi_approx(weight, k, debug=False):
         return np.exp(np.sum(-(x1 - x2)**2) / 2)
 
     print("calculating selected_xs...")
-    selected_xs, qVS = sequential_maximize_score(weight1, rbf_k, centered_gaussian, desired_rank)
+    # selected_xs_i, qVS = sequential_maximize_score_i(numpyWeight, rbf_k, centered_gaussian, desired_rank)
 
-    B = selected_xs
-    C = weight1 
+
+    filename = "processedIndex.pickle"
+    # store in pickle file to not rerun the picking of the vectors
+    # with open(filename, 'wb') as handle:
+    #     pickle.dump(selected_xs_i, handle, protocol=pickle.HIGHEST_PROTOCOL)
+
+    # load from pickle file to get the top k vectors chosen
+    with open(filename, 'rb') as handle:
+        selected_xs_i = pickle.load(handle)
+
+    # change the indices into a tensor format for usage
+    indicesTensor = torch.from_numpy(np.array(selected_xs_i, dtype=np.int32))
+    B = torch.index_select(weight,0,indicesTensor)
+    C = weight 
 
     print(f"B shape {B.shape}")
     print(f"C shape {C.shape}")
 
     print("solving closed form solution of A...")
+    
     # closed form formula for A, such that A . B best approximates C 
-    A = C @ B.T @ (np.linalg.inv(B @ B.T))
+    A = C @ B.T @ (torch.inverse(B @ B.T))
 
     print("solving for weight_approx...")
     weight_approx = A @ B 
@@ -109,19 +122,6 @@ def do_vendi_approx(weight, k, debug=False):
 
     assert weight_approx.shape[0] == weight.shape[0] and weight_approx.shape[1] == weight.shape[1]
     # wraps the weight_approx tensor into a torch.nn.Parameter object
-    weight_approx = torch.nn.Parameter(weight_approx)
+    # weight_approx = torch.nn.Parameter(weight_approx)
 
     return weight_approx
-
-
-
-
-
-
-
-
-
-
-
-
-

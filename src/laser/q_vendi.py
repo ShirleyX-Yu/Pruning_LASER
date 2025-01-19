@@ -39,3 +39,35 @@ def sequential_maximize_score(
         samples.pop(next_sample_i)
 
     return selected_samples, this_qVS
+
+# function that returns the indices of selected vector instead of the vector values
+def sequential_maximize_score_i(
+    samples, k, s, target_size, q=1, p=None, normalize=False
+):
+    if not isinstance(samples, list):
+        samples = [sample for sample in samples]
+    selected_samples_i = []
+    selected_samples = []
+    
+    while len(selected_samples_i) < target_size:
+        best_qVS = 0
+        for sample_i, sample in enumerate(samples):
+            this_qVS = score(
+                selected_samples + [sample], 
+                k, 
+                s, 
+                q=q, 
+                p=p, 
+                normalize=normalize,
+            )
+
+            if this_qVS > best_qVS and sample_i not in selected_samples_i:
+                next_sample = sample
+                next_sample_i = sample_i
+                best_qVS = this_qVS
+        
+        selected_samples.append(next_sample)
+        selected_samples_i.append(next_sample_i)
+        print(f"current selecting sample size: {len(selected_samples_i)}")
+
+    return selected_samples_i, this_qVS
