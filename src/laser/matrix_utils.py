@@ -89,17 +89,25 @@ def do_vendi_approx(weight, k, debug=False):
         return np.exp(np.sum(-(x1 - x2)**2) / 2)
 
     print("calculating selected_xs...")
-    # selected_xs_i, qVS = sequential_maximize_score_i(numpyWeight, rbf_k, centered_gaussian, desired_rank)
+    
 
+    selected_xs_i = None
+    filename = "processedIndexGPTJ.pickle"
 
-    filename = "processedIndex.pickle"
-    # store in pickle file to not rerun the picking of the vectors
-    # with open(filename, 'wb') as handle:
-    #     pickle.dump(selected_xs_i, handle, protocol=pickle.HIGHEST_PROTOCOL)
-
-    # load from pickle file to get the top k vectors chosen
-    with open(filename, 'rb') as handle:
-        selected_xs_i = pickle.load(handle)
+    
+    
+    try:
+        print("Looking for pre-processed pickle model...")
+        # load from pickle file to get the top k vectors chosen
+        with open(filename, 'rb') as handle:
+            selected_xs_i = pickle.load(handle)
+    except:
+        print("Model not found... calculating vendi score...")
+        # store in pickle file to not rerun the picking of the vectors
+        selected_xs_i, qVS = sequential_maximize_score_i(numpyWeight, rbf_k, centered_gaussian, desired_rank)
+        with open(filename, 'wb') as handle:
+            pickle.dump(selected_xs_i, handle, protocol=pickle.HIGHEST_PROTOCOL)
+    
 
     # change the indices into a tensor format for usage
     indicesTensor = torch.from_numpy(np.array(selected_xs_i, dtype=np.int32))

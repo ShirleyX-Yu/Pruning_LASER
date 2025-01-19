@@ -68,6 +68,6 @@ def sequential_maximize_score_i(
         
         selected_samples.append(next_sample)
         selected_samples_i.append(next_sample_i)
-        print(f"current selecting sample size: {len(selected_samples_i)}")
+        print(f"current selecting sample size: {len(selected_samples_i)}/{target_size}")
 
     return selected_samples_i, this_qVS
