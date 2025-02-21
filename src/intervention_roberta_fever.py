@@ -233,7 +233,7 @@ if __name__ == '__main__':
     parser.add_argument('--batch_size', type=int, default=256, help='batch size for evaluation')
     parser.add_argument('--k', type=int, default=10, help='top k for evaluation')
     parser.add_argument('--intervention', type=str, default="dropout",
-                        choices=['dropout', 'rank-reduction'], help="what type of intervention to perform")
+                        choices=['dropout', 'rank-reduction','vendi-score'], help="what type of intervention to perform")
     parser.add_argument('--lname', type=str, default="None",
                         choices=['k_proj', 'q_proj', 'v_proj', 'out_proj', 'fc_in', 'fc_out', 'None', 'dont'],
                         help="provided which type of parameters to effect")
@@ -256,7 +256,7 @@ if __name__ == '__main__':
     home_dir = args.home_dir
     dataset_loc = args.dataset_file
 
-    save_dir = f"{home_dir}/{llm_name}/{args.intervention}/{args.lname}"
+    save_dir = f"./{home_dir}/{llm_name}/{args.intervention}/{args.lname}"
     if not os.path.exists(save_dir):
         os.makedirs(save_dir)
 

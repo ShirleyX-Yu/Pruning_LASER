@@ -2,7 +2,7 @@ import torch
 
 from copy import deepcopy
 from laser.abstract_laser import AbstractLaser
-from laser.matrix_utils import do_low_rank, sorted_mat, prune
+from laser.matrix_utils import do_vendi_approx, do_low_rank, sorted_mat, prune
 
 
 class RobertaLaser(AbstractLaser):
@@ -81,8 +81,15 @@ class RobertaLaser(AbstractLaser):
                 mat_analysis = torch.from_numpy(mat_analysis)
 
             elif intervention == 'rank-reduction':
+                print("running SVD rank reduction")
                 # Do rank reduction
                 mat_analysis = do_low_rank(mat_analysis_tensor.type(torch.float32), (10 - rate) * 0.1, niter=20)
+
+            # for VENDI scores
+            elif intervention == 'vendi-score': 
+                print("running vendi-score...")
+                mat_analysis_tensor = deepcopy(param)
+                mat_analysis = do_vendi_approx(mat_analysis_tensor.type(torch.float32), (10 - rate) * 0.1)
 
             elif intervention == 'zero':
                 mat_analysis_tensor = deepcopy(param)

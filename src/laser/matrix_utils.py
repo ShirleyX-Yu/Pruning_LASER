@@ -92,7 +92,7 @@ def do_vendi_approx(weight, k, debug=False):
     
 
     selected_xs_i = None
-    filename = "processedIndexGPTJ.pickle"
+    filename = "processedIndexRoberta.pickle"
 
     
     
