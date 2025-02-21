@@ -10,7 +10,7 @@ def count_decimals(number):
 
 def getRate(step_size):
     rate = []
-    for i in np.arange(0, 1, step_size): 
+    for i in np.arange(0.8, 1, step_size): 
         rate.append(round(i, count_decimals(step_size)))
     
     return rate
