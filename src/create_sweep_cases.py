@@ -29,12 +29,15 @@ lnames = ['fc_in', 'fc_out']
 
 try:
     # Open and read the JSON file
-    with open('sweep.json', 'r') as file:
+    with open('sweep.json', 'r+') as file:
         data = json.load(file)
         data["lname"] = lnames
         data["rate"] = getRate(0.01)
         data["lnum"] = getLayer('gptj')
-        print(json.dumps(data, indent=4))  # Beautify the printed JSON
+        json_output = json.dumps(data, indent=4)
+        print(json_output) 
+        file.write(json_output)
+    
 
 except FileNotFoundError:
     print("The file was not found.")
