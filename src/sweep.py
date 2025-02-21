@@ -1,6 +1,7 @@
 import subprocess
 import json
 import argparse
+import time
 
 def write_run(jobname, extra=''):
     with open('temp.sh', 'w') as f:
@@ -17,7 +18,7 @@ def write_run(jobname, extra=''):
                 "#SBATCH --mail-user=your_email\n".format(jobname))
 
         cmd = "python -u train.py "
-        cat = " >jobname + ".out"
+        cat = " >jobname" + ".out"
         f.write(cmd+extra+cat+'\n')
 
     subprocess.call('chmod +x temp.sh', shell=True)
