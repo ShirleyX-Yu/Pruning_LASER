@@ -34,7 +34,7 @@ try:
     with open('sweep.json', 'w+') as file:
         data = {}
         data["lname"] = lnames
-        data["rate"] = getRate(0.8, 1, 0.01)
+        data["rate"] = getRate(0.01, 9.99, 0.01)
         data["lnum"] = getLayer('gptj')
         data["use_quality"] = use_quality
         json_output = json.dumps(data, indent=4)
