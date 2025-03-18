@@ -2,18 +2,18 @@ import numpy as np
 
 from vendi_score import vendi
 
-
-def score(samples, k, s, q=1, p=None, normalize=False):
-    # quality_scores = [s(sample) for sample in samples]
-    # quality_mean = np.mean(quality_scores)
+def score(samples, k, s, q=1, p=None, normalize=False, use_quality=False):
+    # for non-quality weighted scores, the quality_mean is simply 1
+    quality_mean = 1
+    if use_quality: 
+        # print("using_quality")
+        quality_scores = [s(sample) for sample in samples]
+        quality_mean = np.mean(quality_scores)
     vendi_score = vendi.score(samples, k, q=q, p=p, normalize=normalize)
-    #  return quality_mean * vendi_score
-
-    return vendi_score
-
+    return quality_mean * vendi_score
 
 def sequential_maximize_score(
-    samples, k, s, target_size, q=1, p=None, normalize=False
+    samples, k, s, target_size, q=1, p=None, normalize=False, use_quality=False,
 ):
     if not isinstance(samples, list):
         samples = [sample for sample in samples]
@@ -29,6 +29,7 @@ def sequential_maximize_score(
                 q=q, 
                 p=p, 
                 normalize=normalize,
+                use_quality=use_quality,
             )
 
             if this_qVS > best_qVS:
@@ -43,7 +44,7 @@ def sequential_maximize_score(
 
 # function that returns the indices of selected vector instead of the vector values
 def sequential_maximize_score_i(
-    samples, k, s, target_size, q=1, p=None, normalize=False
+    samples, k, s, target_size, q=1, p=None, normalize=False, use_quality=False,
 ):
     if not isinstance(samples, list):
         samples = [sample for sample in samples]
@@ -60,6 +61,7 @@ def sequential_maximize_score_i(
                 q=q, 
                 p=p, 
                 normalize=normalize,
+                use_quality=use_quality,
             )
 
             if this_qVS > best_qVS and sample_i not in selected_samples_i:

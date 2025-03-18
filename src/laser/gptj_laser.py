@@ -82,8 +82,7 @@ class GPTJLaser(AbstractLaser):
         return modify_flag
 
     @staticmethod
-    def get_edited_model(model, lname, lnum, rate, intervention="rank-reduction", logger=None, in_place=True):
-
+    def get_edited_model(model, lname, lnum, rate, intervention="rank-reduction", logger=None, in_place=True, use_quality=False):
         if in_place:
             model_edit = model
         else:
@@ -129,7 +128,7 @@ class GPTJLaser(AbstractLaser):
             elif intervention == 'vendi-score': 
                 print("running vendi-score...")
                 mat_analysis_tensor = deepcopy(param)
-                mat_analysis = do_vendi_approx(mat_analysis_tensor.type(torch.float32), (10 - rate) * 0.1)
+                mat_analysis = do_vendi_approx(mat_analysis_tensor.type(torch.float32), (10 - rate) * 0.1, use_quality=use_quality)
 
             elif intervention == 'zero':
                 mat_analysis_tensor = deepcopy(param)

@@ -27,6 +27,7 @@ def getLayer(model):
     return layers
 
 lnames = ['fc_in', 'fc_out']
+use_quality = [True, False]
 
 try:
     # Open and read the JSON file
@@ -35,6 +36,7 @@ try:
         data["lname"] = lnames
         data["rate"] = getRate(0.8, 1, 0.01)
         data["lnum"] = getLayer('gptj')
+        data["use_quality"] = use_quality
         json_output = json.dumps(data, indent=4)
         print(json_output) 
         file.write(json_output)

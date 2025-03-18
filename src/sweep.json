@@ -55,5 +55,9 @@
         26,
         27,
         28
+    ],
+    "use_quality": [
+        true,
+        false
     ]
 }

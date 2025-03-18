@@ -50,7 +50,8 @@ class GPTJExperiment:
                                                    rate=args.rate,
                                                    intervention=args.intervention,
                                                    logger=logger,
-                                                   in_place=True)
+                                                   in_place=True, 
+                                                   use_quality=args.use_quality)
 
         model_edit.to(self.device)
         self.logger.log(f"Edited and put model on {model_edit.device} in time {elapsed_from_str(time_edit_start)}")
@@ -239,6 +240,7 @@ if __name__ == '__main__':
     parser.add_argument('--dataset_file', type=str,
                         default="/mnt/data/counterfact",
                         help='Directory where the data is')
+    parser.add_argument('--use_quality', action="store_true", help='True for quality weighted vendi score calculations')
 
     args = parser.parse_args()
 
