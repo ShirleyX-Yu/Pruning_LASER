@@ -249,12 +249,13 @@ if __name__ == '__main__':
     # Step 2: Load model and tokenizer
     llm_name = "GPTJ"
     llm_path = "EleutherAI/gpt-j-6B"
-    tokenizer = AutoTokenizer.from_pretrained(llm_path)
+    tokenizer = AutoTokenizer.from_pretrained(llm_path,cache_dir="./")
     model = GPTJForCausalLM.from_pretrained(
         llm_path,
         # changed from "float16" and torch.float16 to 32 for running on CPU
         revision="float32",
-        torch_dtype=torch.float32
+        torch_dtype=torch.float32,
+        cache_dir="./"
     )
 
     # Step 3: Create save directory and logger
