@@ -33,7 +33,7 @@ class RobertaLaser(AbstractLaser):
         return converted_name
 
     @staticmethod
-    def get_edited_model(model, lname, lnum, rate, intervention="rank-reduction", logger=None, in_place=True):
+    def get_edited_model(model, lname, lnum, rate, intervention="rank-reduction", logger=None, in_place=True, min_diversity=False):
 
         if in_place:
             model_edit = model
@@ -89,7 +89,7 @@ class RobertaLaser(AbstractLaser):
             elif intervention == 'vendi-score': 
                 print("running vendi-score...")
                 mat_analysis_tensor = deepcopy(param)
-                mat_analysis = do_vendi_approx(mat_analysis_tensor.type(torch.float32), (10 - rate) * 0.1)
+                mat_analysis = do_vendi_approx(mat_analysis_tensor.type(torch.float32), (10 - rate) * 0.1, min_diversity=min_diversity)
 
             elif intervention == 'zero':
                 mat_analysis_tensor = deepcopy(param)

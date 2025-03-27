@@ -68,7 +68,7 @@ def do_low_rank(weight, k, debug=False, niter=2):
 
 
 # function to do low rank approx using VENDI scores
-def do_vendi_approx(weight, k, debug=False, use_quality=False): 
+def do_vendi_approx(weight, k, debug=False, use_quality=False, min_diversity=False): 
     assert weight.ndim == 2
 
     max_rank = min(weight.shape[0], weight.shape[1])
@@ -102,7 +102,7 @@ def do_vendi_approx(weight, k, debug=False, use_quality=False):
     except:
         print("Model not found... calculating vendi score...")
         # store in pickle file to not rerun the picking of the vectors
-        selected_xs_i, qVS = sequential_maximize_score_i(numpyWeight, rbf_k, centered_gaussian, desired_rank, use_quality=use_quality)
+        selected_xs_i, qVS = sequential_maximize_score_i(numpyWeight, rbf_k, centered_gaussian, desired_rank, use_quality=use_quality, min_diversity=min_diversity)
         with open(filename, 'wb') as handle:
             pickle.dump(selected_xs_i, handle, protocol=pickle.HIGHEST_PROTOCOL)
     

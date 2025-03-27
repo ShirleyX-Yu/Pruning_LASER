@@ -44,7 +44,7 @@ def sequential_maximize_score(
 
 # function that returns the indices of selected vector instead of the vector values
 def sequential_maximize_score_i(
-    samples, k, s, target_size, q=1, p=None, normalize=False, use_quality=False,
+    samples, k, s, target_size, q=1, p=None, normalize=False, use_quality=False, min_diversity=False
 ):
     if not isinstance(samples, list):
         samples = [sample for sample in samples]
@@ -63,6 +63,10 @@ def sequential_maximize_score_i(
                 normalize=normalize,
                 use_quality=use_quality,
             )
+
+            # if we want the vectors with the smallest diversity instead
+            if min_diversity: 
+                this_qVS = this_qVS * -1
 
             if this_qVS > best_qVS and sample_i not in selected_samples_i:
                 next_sample = sample
