@@ -52,7 +52,7 @@ class GPTJExperiment:
                                                    logger=logger,
                                                    in_place=True, 
                                                    use_quality=args.use_quality, 
-                                                   min_diversity=args.min_div)
+                                                   min_diversity=args.min_diversity)
 
         model_edit.to(self.device)
         self.logger.log(f"Edited and put model on {model_edit.device} in time {elapsed_from_str(time_edit_start)}")
@@ -242,7 +242,7 @@ if __name__ == '__main__':
                         default="/mnt/data/counterfact",
                         help='Directory where the data is')
     parser.add_argument('--use_quality', action="store_true", help='True for quality weighted vendi score calculations')
-    parser.add_argument('--min_div', action="store_true", help='True for quality weighted vendi score by lowest diversity')
+    parser.add_argument('--min_diversity', action="store_true", help='True for quality weighted vendi score by lowest diversity')
 
     args = parser.parse_args()
 
