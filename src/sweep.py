@@ -18,6 +18,7 @@ def get_args_parser():
                    help='sweep file')
     return parser
 
+#  "#SBATCH --time=167:00:00\n"
 def write_run(jobname, extra=''):
     with open('temp.sh', 'w') as f:
         f.write("#!/bin/bash\n"
@@ -27,7 +28,7 @@ def write_run(jobname, extra=''):
                 "#SBATCH --ntasks=1\n"
                 "#SBATCH --cpus-per-task=1\n"
                 "#SBATCH --mem-per-cpu=50G\n"
-                "#SBATCH --time=167:00:00\n"
+                "#SBATCH --time=00:20:00\n"
                 "#SBATCH --mail-type=begin\n"
                 "#SBATCH --mail-type=end\n"
                 "#SBATCH --mail-user=your_email\n".format(jobname))
@@ -37,8 +38,8 @@ def write_run(jobname, extra=''):
         f.write(cmd+extra+cat+'\n')
 
     subprocess.call('chmod +x temp.sh', shell=True)
-    # time.sleep(0.1)
-    # subprocess.call('sbatch temp.sh', shell=True)
+    time.sleep(0.1)
+    subprocess.call('sbatch temp.sh', shell=True)
 
 parser = get_args_parser()
 args = parser.parse_args()
