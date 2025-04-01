@@ -14,6 +14,8 @@ def get_args_parser():
     parser.add_argument('lnum',
 						help='layer number',
 						type=int)
+    parser.add_argument('--sweep', type=str, default='sweep.json',
+                   help='sweep file')
     return parser
 
 def write_run(jobname, extra=''):
@@ -35,8 +37,8 @@ def write_run(jobname, extra=''):
         f.write(cmd+extra+cat+'\n')
 
     subprocess.call('chmod +x temp.sh', shell=True)
-    time.sleep(0.1)
-    subprocess.call('sbatch -A vertaix temp.sh', shell=True)
+    # time.sleep(0.1)
+    # subprocess.call('sbatch temp.sh', shell=True)
 
 parser = get_args_parser()
 args = parser.parse_args()
