@@ -21,7 +21,7 @@ def getLayer(model):
     layers = []
     assert(model in models)
 
-    for i in range(models[model] + 1): 
+    for i in range(models[model] - 5, models[model] + 1): 
         layers.append(i)
     
     return layers
@@ -34,7 +34,7 @@ try:
     with open('sweep.json', 'w+') as file:
         data = {}
         data["lname"] = lnames
-        data["rate"] = getRate(8.8, 9.9, 0.1)
+        data["rate"] = getRate(9.7, 9.9, 0.1)
         data["lnum"] = getLayer('gptj')
         data["use_quality"] = use_quality
         json_output = json.dumps(data, indent=4)
