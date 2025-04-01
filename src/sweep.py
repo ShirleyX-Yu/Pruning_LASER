@@ -33,7 +33,7 @@ def write_run(jobname, extra=''):
                 "#SBATCH --mail-type=end\n"
                 "#SBATCH --mail-user=your_email\n".format(jobname))
 
-        cmd = "python -u train.py "
+        cmd = "python -u intervention_gptj_fever.py "
         cat = " >jobname" + ".out"
         f.write(cmd+extra+cat+'\n')
 
