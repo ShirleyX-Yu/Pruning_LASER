@@ -53,7 +53,15 @@ for opt, vals in sweep_args.items():
     new_arglist = []
     for j, v in enumerate(vals):
         for i in range(len(arglist)):
-            new_arglist.append( arglist[i] + ' --'+opt+' '+str(v) )
+            # handle boolean flags specially
+            if opt == 'use_quality':
+                if v:  # if True, add just the flag
+                    new_arglist.append(arglist[i] + ' --' + opt)
+                # if False, don't add anything
+                else:
+                    new_arglist.append(arglist[i])
+            else:  # for non-boolean arguments, add both flag and value
+                new_arglist.append(arglist[i] + ' --' + opt + ' ' + str(v))
     arglist = new_arglist
 
 for i, ar in enumerate(arglist):
