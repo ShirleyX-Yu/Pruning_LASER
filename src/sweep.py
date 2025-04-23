@@ -20,6 +20,21 @@ def get_args_parser():
 
 #  "#SBATCH --time=167:00:00\n"
 def write_run(jobname, extra=''):
+    # Parse the extra string to extract parameter values
+    params = {}
+    parts = extra.strip().split('--')
+    for part in parts:
+        if part:
+            tokens = part.strip().split()
+            if len(tokens) >= 2:
+                params[tokens[0]] = tokens[1]
+            elif len(tokens) == 1:
+                # For boolean flags like use_quality
+                params[tokens[0]] = 'True'
+    
+    # Create a filename-safe string with parameters
+    param_str = '-'.join([f"{k}_{v}" for k, v in params.items() if v])
+    
     with open('temp.sh', 'w') as f:
         f.write("#!/bin/bash\n"
                 "#SBATCH --job-name=job_name{0}\n"
@@ -34,7 +49,8 @@ def write_run(jobname, extra=''):
                 "#SBATCH --mail-user=sy9504@cs.princeton.edu\n".format(jobname))
 
         cmd = "python -u intervention_gptj_fever.py "
-        cat = " >jobname" + ".out"
+        # Include parameters in the output filename
+        cat = f" >job_{jobname}-{param_str}.out"
         f.write(cmd+extra+cat+'\n')
 
     subprocess.call('chmod +x temp.sh', shell=True)
