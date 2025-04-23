@@ -31,7 +31,7 @@ def write_run(jobname, extra=''):
                 "#SBATCH --time=00:20:00\n"
                 "#SBATCH --mail-type=begin\n"
                 "#SBATCH --mail-type=end\n"
-                "#SBATCH --mail-user=your_email\n".format(jobname))
+                "#SBATCH --mail-user=sy9504@cs.princeton.edu\n".format(jobname))
 
         cmd = "python -u intervention_gptj_fever.py "
         cat = " >jobname" + ".out"
