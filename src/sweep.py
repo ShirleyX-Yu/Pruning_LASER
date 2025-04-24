@@ -5,15 +5,15 @@ import time
 
 def get_args_parser():
     parser = argparse.ArgumentParser(description='tuning hyperparams for the modified LASER model')
-    parser.add_argument('lname',
-						help='location of modification',
-						type=str)
-    parser.add_argument('rate',
-						help='ρ = 1 - 0.1 * rate',
-						type=float)
-    parser.add_argument('lnum',
-						help='layer number',
-						type=int)
+    # parser.add_argument('lname',
+	# 					help='location of modification',
+	# 					type=str)
+    # parser.add_argument('rate',
+	# 					help='ρ = 1 - 0.1 * rate',
+	# 					type=float)
+    # parser.add_argument('lnum',
+	# 					help='layer number',
+	# 					type=int)
     parser.add_argument('--sweep', type=str, default='sweep.json',
                    help='sweep file')
     return parser
