@@ -1,20 +1,14 @@
 {
     "lname": [
-        "fc_in",
         "fc_out"
     ],
     "rate": [
-        9.7,
-        9.8,
-        9.9
+        9.8
     ],
     "lnum": [
-        23,
-        24,
-        25
+        24
     ],
     "use_quality": [
-        true,
-        false
+        true
     ]
 }
