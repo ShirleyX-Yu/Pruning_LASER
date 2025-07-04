@@ -1,25 +1,47 @@
-# Layer-Selective Rank Reduction
-
-This repository contains code for the paper _"The Truth is in There: Improving Reasoning in Language Models with Layer-Selective Rank Reduction,"_ by Pratyusha Sharma, Jordan T. Ash and Dipendra Misra [ICLR 2024](https://arxiv.org/pdf/2312.13558.pdf). 
-
-**Website:** [https://pratyushasharma.github.io/laser/](https://pratyushasharma.github.io/laser)
-
-**Updates:**
-- **Jan 18th, 2024:** Refactoring is happening in the [refactor](https://github.com/pratyushasharma/laser/tree/refactor) branch. We are working to release it quickly and thank you for your patience.
-- **Jan 7th, 2024:** Results table has been created on the [website](https://pratyushasharma.github.io/laser/index.html#results). 
-- **Jan 4th, 2024:** Discussions page is open. Feel free to use it to suggest new topics/ideas/results that are not covered by issues.
-
-**This is an early development release. We will do a major refactor in Jan 2024 to make the code easier to use and more flexible.** 
-
-We welcome issues and pull requests. If you report a new result using LASER on a given LLM and NLP task, please issue a pull request and we'll add it to the website's leaderboard.
-
 ## What is Layer-Selective Rank Reduction?
 
-**LA**yer-**SE**lective **R**ank-Reduction, abbreviated as LASER, is an intervention where we replace a selected weight matrix in the transformer architecture of an LLM with its low-rank approximation. A single LASER transformation consists of 3 hyperparameters: the layer number to modify (&ell;) such as 16th layer, the parameter type (&tau;) such as the first MLP layer, and the fraction of the maximum rank to retain (&rho;) such as 0.01 fraction of the rank. We can write this transformation as (&ell;, &tau;, &rho;) and we can compose these transformations and apply them in parallel. The low-rank approximation is performed using SVD. Figure below from our paper shows an illustration.
+This repository modifies the **LA**yer-**SE**lective **R**ank-Reduction (LASER) framework introduced by Sharma et al. [ICLR 2024](https://arxiv.org/pdf/2312.13558.pdf). LASER is an intervention technique that replaces selected weight matrices in transformer architectures with low-rank approximations to improve model performance without additional training.
 
 ![LASER illustration](https://pratyushasharma.github.io/laser/images/main.png)
 
-LASER can give significant performance improvements on question-answerting tasks without additional model training. Our paper presents various results related to evaluating LASER on 3 different LLMs and several LLM benchmarks. This repository contains the code to reproduce these results.
+While the original LASER work uses SVD-based rank reduction, we modify this framework with alternative approaches including Vendi scores for diversity-based pruning.
+
+## Vendi Scores for Diversity-Based Pruning
+
+Our main contribution is modifying the LASER framework to use **Vendi scores** as an alternative to traditional SVD-based rank reduction. Vendi scores provide a principled approach to selecting diverse and representative weight vectors from neural network layers.
+
+### What are Vendi Scores?
+
+Vendi scores measure the diversity of a set of vectors by computing the effective number of distinct elements in the set. Unlike SVD which selects vectors based on singular values (magnitude), our approach selects vectors that maximize diversity while maintaining representational quality.
+
+### Key Features:
+
+- **Diversity Maximization**: Instead of keeping the top-k singular vectors, Vendi scores select vectors that maximize the diversity of the remaining weight matrix
+- **Quality-Weighted Selection**: Option to weight vector selection by their quality scores (using `--use_quality` flag)
+- **Minimum Diversity Mode**: Option to select vectors with minimum diversity instead of maximum diversity (using `--min_diversity` flag)
+- **Sequential Optimization**: Uses greedy sequential selection to find the optimal set of diverse vectors
+
+### Usage:
+
+To use Vendi scores instead of traditional rank reduction, add the `--intervention vendi-score` flag:
+
+```bash
+python3 intervention_gptj_fever.py --lname fc_in --rate 9.9 --lnum 26 --intervention vendi-score
+```
+
+Additional Vendi-specific options:
+- `--use_quality`: Enable quality-weighted Vendi score calculations
+- `--min_diversity`: Select vectors with minimum diversity instead of maximum diversity
+
+### Implementation Details:
+
+Our Vendi score implementation:
+1. Converts weight matrices to numpy arrays
+2. Uses RBF kernels to compute similarity between weight vectors
+3. Applies sequential maximization to select diverse vector subsets
+4. Solves a closed-form solution to approximate the original weight matrix using the selected vectors
+
+This approach can potentially lead to better model performance by preserving more diverse and representative weight patterns compared to traditional SVD-based pruning.
 
 ## How to run a sample code
 
